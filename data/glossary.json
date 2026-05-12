@@ -1,0 +1,620 @@
+[
+  {
+    "id": "4a84b018-ad18-47d8-9e98-2195daeb21d7",
+    "term": "en:am celavi",
+    "hebrew": "עם כלביא",
+    "explanation": "עם כלביא שם מבצע של מלחמה בין ישראל לאיראן"
+  },
+  {
+    "id": "b2c3d4e5-f6a7-48b9-c0d1-e2f3a4b5c6d7",
+    "term": "en:Permanent resident | ru:Постоянный житель | ar:مقيم دائم | fr:Résident permanent | es:Residente permanente",
+    "hebrew": "תושב קבע",
+    "explanation": "Must always be תושב קבע (not תושב קבוע). Used in Population Registry, Bituach Leumi, Ministry of Interior forms."
+  },
+  {
+    "id": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d",
+    "term": "en:Identity number | ru:Идентификационный номер, Номер удостоверения | ar:رقم الهوية | fr:Numéro d'identité | es:Número de identidad",
+    "hebrew": "מספר זהות",
+    "explanation": "The Israeli 9-digit Mispar Zehut. Must be מספר זהות — never מספר מזהה or מספר תעודה."
+  },
+  {
+    "id": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5e",
+    "term": "en:Identity card, Tarjeta de identidad, Documento de identidad | ru:Удостоверение личности | ar:بطاقة هوية, بطاقة الهوية | fr:Carte d'identité",
+    "hebrew": "תעודת זהות",
+    "explanation": "Israeli national ID (Teudat Zehut). Must be תעודת זהות — never כרטיס זהות or תעודה מזהה."
+  },
+  {
+    "id": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5f",
+    "term": "en:Applicant ID, ID del solicitante | ru:Номер заявителя, Идентификатор заявителя | ar:رقم هوية مقدم الطلب | fr:Numéro du demandeur",
+    "hebrew": "מספר זהות מגיש הבקשה",
+    "explanation": "In Israeli gov context, Applicant ID = the applicant's תעודת זהות number. Must be מספר זהות מגיש הבקשה — never מספר מועמד."
+  },
+  {
+    "id": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c60",
+    "term": "en:Passport number | ru:Номер паспорта | ar:رقم جواز السفر | fr:Numéro de passeport | es:Número de pasaporte",
+    "hebrew": "מספר דרכון",
+    "explanation": "Must be מספר דרכון."
+  },
+  {
+    "id": "b2c3d4e5-f6a7-48b9-c0d1-e2f3a4b5c6e0",
+    "term": "en:New immigrant, Oleh Hadash, Oleh Chadash, Nuevo inmigrante | ru:Новый репатриант, Новый иммигрант, Олим | ar:مهاجر جديد | fr:Nouvel immigrant",
+    "hebrew": "עולה חדש",
+    "explanation": "Official Israeli term under the Law of Return. Must be עולה חדש — never מהגר חדש."
+  },
+  {
+    "id": "b2c3d4e5-f6a7-48b9-c0d1-e2f3a4b5c6e1",
+    "term": "en:Aliyah, Aliá, Immigration to Israel | ru:Репатриация, Алия | ar:الهجرة إلى إسرائيل, العلياه | fr:Immigration en Israël | es:Inmigración a Israel",
+    "hebrew": "עלייה",
+    "explanation": "Jewish immigration to Israel = עלייה (Aliyah). Must never be הגירה in this context. הגירה is only for general/non-Israel immigration."
+  },
+  {
+    "id": "b2c3d4e5-f6a7-48b9-c0d1-e2f3a4b5c6e2",
+    "term": "en:Returning resident | ru:Возвращающийся житель | ar:مقيم عائد | fr:Résident de retour | es:Residente que regresa",
+    "hebrew": "תושב חוזר",
+    "explanation": "Israeli who returns after living abroad. Must be תושב חוזר."
+  },
+  {
+    "id": "b2c3d4e5-f6a7-48b9-c0d1-e2f3a4b5c6e3",
+    "term": "en:Temporary resident | ru:Временный житель | ar:مقيم مؤقت | fr:Résident temporaire | es:Residente temporal",
+    "hebrew": "תושב ארעי",
+    "explanation": "Must be תושב ארעי — not תושב זמני."
+  },
+  {
+    "id": "b2c3d4e5-f6a7-48b9-c0d1-e2f3a4b5c6e4",
+    "term": "en:Citizen | ru:Гражданин | ar:مواطن | fr:Citoyen | es:Ciudadano",
+    "hebrew": "אזרח",
+    "explanation": "Israeli citizenship status. Must be אזרח."
+  },
+  {
+    "id": "b2c3d4e5-f6a7-48b9-c0d1-e2f3a4b5c6e5",
+    "term": "en:Law of Return, Ley de Retorno | ru:Закон о возвращении | ar:قانون العودة | fr:Loi du retour",
+    "hebrew": "חוק השבות",
+    "explanation": "Must always be חוק השבות."
+  },
+  {
+    "id": "c3d4e5f6-a7b8-49c0-d1e2-f3a4b5c6d7e0",
+    "term": "en:Marital status, Estado civil | ru:Семейное положение | ar:الحالة الاجتماعية, الوضع العائلي | fr:État civil",
+    "hebrew": "מצב משפחתי",
+    "explanation": "Must be מצב משפחתי — not מעמד נישואין or סטטוס משפחתי."
+  },
+  {
+    "id": "c3d4e5f6-a7b8-49c0-d1e2-f3a4b5c6d7e1",
+    "term": "en:Single | ru:Холост, Не замужем | ar:أعزب, عزباء | fr:Célibataire | es:Soltero/a",
+    "hebrew": "רווק/ה",
+    "explanation": "Marital status value — רווק (m) / רווקה (f)."
+  },
+  {
+    "id": "c3d4e5f6-a7b8-49c0-d1e2-f3a4b5c6d7e2",
+    "term": "en:Married | ru:Женат, Замужем | ar:متزوج, متزوجة | fr:Marié/e | es:Casado/a",
+    "hebrew": "נשוי/אה",
+    "explanation": "Marital status value — נשוי (m) / נשואה (f)."
+  },
+  {
+    "id": "c3d4e5f6-a7b8-49c0-d1e2-f3a4b5c6d7e3",
+    "term": "en:Divorced | ru:Разведён, Разведена | ar:مطلق, مطلقة | fr:Divorcé/e | es:Divorciado/a",
+    "hebrew": "גרוש/ה",
+    "explanation": "Marital status value — גרוש (m) / גרושה (f)."
+  },
+  {
+    "id": "c3d4e5f6-a7b8-49c0-d1e2-f3a4b5c6d7e4",
+    "term": "en:Widowed | ru:Вдовец, Вдова | ar:أرمل, أرملة | fr:Veuf/Veuve | es:Viudo/a",
+    "hebrew": "אלמן/ה",
+    "explanation": "Marital status value — אלמן (m) / אלמנה (f)."
+  },
+  {
+    "id": "c3d4e5f6-a7b8-49c0-d1e2-f3a4b5c6d7e5",
+    "term": "en:Common-law spouse | ru:Гражданский супруг, Гражданская супруга | ar:زوج/ة بالمعروف | fr:Conjoint de fait | es:Pareja de hecho",
+    "hebrew": "ידוע/ה בציבור",
+    "explanation": "Must be ידוע בציבור (m) / ידועה בציבור (f) — never בן/בת זוג לא נשוי."
+  },
+  {
+    "id": "c3d4e5f6-a7b8-49c0-d1e2-f3a4b5c6d7e6",
+    "term": "en:Divorce, Divorce, Divorcio | ru:Развод | ar:طلاق",
+    "hebrew": "גירושין",
+    "explanation": "The legal event of divorce. Must be גירושין — not גט (which is the religious document only)."
+  },
+  {
+    "id": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f00",
+    "term": "en:Date of birth | ru:Дата рождения | ar:تاريخ الميلاد, تاريخ الولادة | fr:Date de naissance | es:Fecha de nacimiento",
+    "hebrew": "תאריך לידה",
+    "explanation": "Must be תאריך לידה."
+  },
+  {
+    "id": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f01",
+    "term": "en:Place of birth | ru:Место рождения | ar:مكان الميلاد, مكان الولادة | fr:Lieu de naissance | es:Lugar de nacimiento",
+    "hebrew": "מקום לידה",
+    "explanation": "Must be מקום לידה."
+  },
+  {
+    "id": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f02",
+    "term": "en:Full name, Nom complet | ru:Полное имя, ФИО | ar:الاسم الكامل | fr:Nombre completo",
+    "hebrew": "שם מלא",
+    "explanation": "Must be שם מלא."
+  },
+  {
+    "id": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f03",
+    "term": "en:Last name | ru:Фамилия | ar:اسم العائلة | fr:Nom de famille | es:Apellido",
+    "hebrew": "שם משפחה",
+    "explanation": "Must be שם משפחה — not שם אחרון."
+  },
+  {
+    "id": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f04",
+    "term": "en:First name | ru:Имя | ar:الاسم الأول, الاسم الشخصي | fr:Prénom | es:Nombre",
+    "hebrew": "שם פרטי",
+    "explanation": "Must be שם פרטי — not שם ראשון."
+  },
+  {
+    "id": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f05",
+    "term": "en:Father's name | ru:Имя отца, Отчество | ar:اسم الأب | fr:Nom du père | es:Nombre del padre",
+    "hebrew": "שם האב",
+    "explanation": "Must be שם האב. Note: Russian отчество (patronymic) should also map here."
+  },
+  {
+    "id": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f06",
+    "term": "en:Mother's name | ru:Имя матери | ar:اسم الأم | fr:Nom de la mère | es:Nombre de la madre",
+    "hebrew": "שם האם",
+    "explanation": "Must be שם האם."
+  },
+  {
+    "id": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f07",
+    "term": "en:Gender, Genre, Sexe, Sexo | ru:Пол | ar:الجنس | fr:Género",
+    "hebrew": "מין",
+    "explanation": "On official documents must be מין — not מגדר (social construct term)."
+  },
+  {
+    "id": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f08",
+    "term": "en:Male | ru:Мужской | ar:ذكر | fr:Masculin | es:Masculino",
+    "hebrew": "זכר",
+    "explanation": "Gender value on official forms. Must be זכר."
+  },
+  {
+    "id": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f09",
+    "term": "en:Female | ru:Женский | ar:أنثى | fr:Féminin | es:Femenino",
+    "hebrew": "נקבה",
+    "explanation": "Gender value on official forms. Must be נקבה."
+  },
+  {
+    "id": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f10",
+    "term": "en:Address, Adresse | ru:Адрес | ar:العنوان, عنوان | fr:Dirección",
+    "hebrew": "כתובת",
+    "explanation": "Must be כתובת."
+  },
+  {
+    "id": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f11",
+    "term": "en:Mailing address, Adresse postale | ru:Почтовый адрес | ar:عنوان بريدي, عنوان لإرسال البريد | fr:Dirección postal",
+    "hebrew": "כתובת למשלוח דואר",
+    "explanation": "Must be כתובת למשלוח דואר — not כתובת דואר."
+  },
+  {
+    "id": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f12",
+    "term": "en:Country of origin | ru:Страна происхождения | ar:بلد المنشأ, بلد الأصل | fr:Pays d'origine | es:País de origen",
+    "hebrew": "ארץ מוצא",
+    "explanation": "Must be ארץ מוצא (Population Registry standard)."
+  },
+  {
+    "id": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f13",
+    "term": "en:Date of immigration | ru:Дата репатриации | ar:تاريخ الهجرة | fr:Date d'immigration | es:Fecha de inmigración",
+    "hebrew": "תאריך עלייה",
+    "explanation": "Must be תאריך עלייה — not תאריך הגירה."
+  },
+  {
+    "id": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f14",
+    "term": "en:Citizenship | ru:Гражданство | ar:الجنسية, المواطنة | fr:Citoyenneté | es:Ciudadanía",
+    "hebrew": "אזרחות",
+    "explanation": "Must be אזרחות."
+  },
+  {
+    "id": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f15",
+    "term": "en:Religion, Religion, Religión | ru:Религия, Вероисповедание | ar:الديانة, الدين",
+    "hebrew": "דת",
+    "explanation": "Must be דת."
+  },
+  {
+    "id": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f16",
+    "term": "en:Nationality, Nacionalidad | ru:Национальность | ar:القومية, الجنسية | fr:Nationalité",
+    "hebrew": "לאום",
+    "explanation": "Population Registry ethnicity/nationality field. Must be לאום — distinct from אזרחות (citizenship)."
+  },
+  {
+    "id": "e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a00",
+    "term": "en:National Insurance | ru:Национальное страхование, Битуах Леуми | ar:التأمين الوطني | fr:Assurance nationale | es:Seguro Nacional",
+    "hebrew": "ביטוח לאומי",
+    "explanation": "Israeli social security. Must be ביטוח לאומי — never ביטוח סוציאלי."
+  },
+  {
+    "id": "e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a01",
+    "term": "en:National Insurance Institute | ru:Институт национального страхования | ar:مؤسسة التأمين الوطني | fr:Institut d'assurance nationale | es:Instituto de Seguro Nacional",
+    "hebrew": "המוסד לביטוח לאומי",
+    "explanation": "Full official name. Must be המוסד לביטוח לאומי."
+  },
+  {
+    "id": "e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a02",
+    "term": "ru:Пенсия по старости | ar:معاش الشيخوخة | fr:Old age pension | es:Pension de vieillesse, Pensión de vejez",
+    "hebrew": "קצבת אזרח ותיק",
+    "explanation": "Updated official term. Must be קצבת אזרח ותיק — not the outdated קצבת זקנה."
+  },
+  {
+    "id": "e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a03",
+    "term": "en:Disability benefit | ru:Пособие по инвалидности | ar:مخصصات إعاقة | fr:Allocation d'invalidité | es:Prestación por discapacidad",
+    "hebrew": "קצבת נכות",
+    "explanation": "Must be קצבת נכות."
+  },
+  {
+    "id": "e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a04",
+    "term": "en:Unemployment benefit | ru:Пособие по безработице | ar:مخصصات بطالة | fr:Allocation chômage | es:Prestación por desempleo",
+    "hebrew": "דמי אבטלה",
+    "explanation": "Must be דמי אבטלה — not קצבת אבטלה or תשלום אבטלה."
+  },
+  {
+    "id": "e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a05",
+    "term": "en:Income support | ru:Пособие по обеспечению дохода | ar:ضمان الدخل, تأمين الدخل | fr:Assurance revenu | es:Garantía de ingresos",
+    "hebrew": "הבטחת הכנסה",
+    "explanation": "Must be הבטחת הכנסה — not תמיכה בהכנסה."
+  },
+  {
+    "id": "e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a06",
+    "term": "en:Child allowance | ru:Детское пособие | ar:مخصصات أطفال | fr:Allocation enfants | es:Asignación por hijo",
+    "hebrew": "קצבת ילדים",
+    "explanation": "Must be קצבת ילדים."
+  },
+  {
+    "id": "e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a07",
+    "term": "en:Survivors benefit | ru:Пособие по потере кормильца | ar:مخصصات الباقين | fr:Allocation de survivants | es:Prestación de sobrevivientes",
+    "hebrew": "קצבת שאירים",
+    "explanation": "Must be קצבת שאירים."
+  },
+  {
+    "id": "e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a08",
+    "term": "en:Maternity benefit | ru:Пособие по беременности и родам | ar:مستحقات ولادة | fr:Allocation de maternité | es:Prestación por maternidad",
+    "hebrew": "דמי לידה",
+    "explanation": "Must be דמי לידה — not קצבת לידה (which is the one-time birth grant)."
+  },
+  {
+    "id": "e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a09",
+    "term": "en:Birth grant, Prime de naissance | ru:Единовременная выплата при рождении | ar:منحة ولادة | fr:Subsidio por nacimiento",
+    "hebrew": "מענק לידה",
+    "explanation": "One-time payment. Must be מענק לידה."
+  },
+  {
+    "id": "e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a10",
+    "term": "en:Work injury, Accident du travail | ru:Производственная травма | ar:إصابة عمل | fr:Accidente laboral",
+    "hebrew": "פגיעה בעבודה",
+    "explanation": "Must be פגיעה בעבודה."
+  },
+  {
+    "id": "e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a11",
+    "term": "en:Hostile action casualty, Víctima de acción hostil | ru:Пострадавший от враждебных действий | ar:مصاب عمليات عدائية | fr:Victime d'acte hostile",
+    "hebrew": "נפגע פעולות איבה",
+    "explanation": "Official Bituach Leumi term for terror victims. Must be נפגע פעולות איבה."
+  },
+  {
+    "id": "e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a12",
+    "term": "en:Insurance premium, Prima de seguro | ru:Страховые взносы | ar:رسوم تأمين, أقساط التأمين | fr:Cotisation d'assurance",
+    "hebrew": "דמי ביטוח",
+    "explanation": "Bituach Leumi contributions. Must be דמי ביטוח — not פרמיית ביטוח (private insurance)."
+  },
+  {
+    "id": "e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a13",
+    "term": "en:Insured person | ru:Застрахованное лицо | ar:مؤمَّن عليه, شخص مؤمن | fr:Assuré | es:Persona asegurada",
+    "hebrew": "מבוטח",
+    "explanation": "Must be מבוטח."
+  },
+  {
+    "id": "e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a14",
+    "term": "en:Dependent, Dependiente | ru:Иждивенец | ar:مُعال | fr:Personne à charge",
+    "hebrew": "תלוי",
+    "explanation": "Must be תלוי — not נתמך."
+  },
+  {
+    "id": "e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a15",
+    "term": "en:Claim, Demande de prestation | ru:Заявление, Требование | ar:مطالبة, تقديم مطالبة | fr:Reclamación",
+    "hebrew": "תביעה",
+    "explanation": "NII benefit claim. Must be תביעה when referring to official NII claims."
+  },
+  {
+    "id": "f6a7b8c9-d0e1-4f2a-3b4c-5d6e7f8a9b00",
+    "term": "en:Employed | ru:Наёмный работник | ar:موظف, عامل أجير | fr:Salarié | es:Empleado/a, Asalariado/a",
+    "hebrew": "שכיר",
+    "explanation": "Employment status. Must be שכיר in Bituach Leumi context — not מועסק."
+  },
+  {
+    "id": "f6a7b8c9-d0e1-4f2a-3b4c-5d6e7f8a9b01",
+    "term": "en:Self-employed | ru:Самозанятый, Индивидуальный предприниматель | ar:عامل مستقل, مستقل | fr:Indépendant | es:Trabajador autónomo",
+    "hebrew": "עצמאי",
+    "explanation": "Must be עצמאי."
+  },
+  {
+    "id": "f6a7b8c9-d0e1-4f2a-3b4c-5d6e7f8a9b02",
+    "term": "en:Unemployed, Sans emploi | ru:Безработный | ar:عاطل عن العمل, غير عامل | fr:Desempleado/a",
+    "hebrew": "לא עובד",
+    "explanation": "On Bituach Leumi forms. Must be לא עובד — not מובטל."
+  },
+  {
+    "id": "f6a7b8c9-d0e1-4f2a-3b4c-5d6e7f8a9b03",
+    "term": "en:Employer, Employeur | ru:Работодатель | ar:صاحب عمل, مشغّل | fr:Empleador",
+    "hebrew": "מעסיק",
+    "explanation": "Must be מעסיק."
+  },
+  {
+    "id": "f6a7b8c9-d0e1-4f2a-3b4c-5d6e7f8a9b04",
+    "term": "en:Layoff | ru:Увольнение | ar:فصل من العمل, إقالة | fr:Licenciement | es:Despido",
+    "hebrew": "פיטורים",
+    "explanation": "Must be פיטורים."
+  },
+  {
+    "id": "f6a7b8c9-d0e1-4f2a-3b4c-5d6e7f8a9b05",
+    "term": "en:Downsizing | ru:Сокращение штата, Сокращение | ar:تقليص القوى العاملة, تقليص العمالة | fr:Réduction d'effectifs | es:Reducción de personal",
+    "hebrew": "פיטורי צמצום",
+    "explanation": "Layoffs due to downsizing/redundancy. Must be פיטורי צמצום — never צמצום כוח אדם or צמצום מצבת כוח אדם."
+  },
+  {
+    "id": "f6a7b8c9-d0e1-4f2a-3b4c-5d6e7f8a9b06",
+    "term": "en:Resignation | ru:Увольнение по собственному желанию | ar:استقالة | fr:Démission | es:Renuncia",
+    "hebrew": "התפטרות",
+    "explanation": "Must be התפטרות."
+  },
+  {
+    "id": "0a1b2c3d-4e5f-4a6b-7c8d-9e0f1a2b3c00",
+    "term": "en:Health fund, Fondo de salud | ru:Больничная касса | ar:صندوق المرضى | fr:Caisse maladie",
+    "hebrew": "קופת חולים",
+    "explanation": "Israeli HMO. Must be קופת חולים — never קרן בריאות or ביטוח בריאות."
+  },
+  {
+    "id": "0a1b2c3d-4e5f-4a6b-7c8d-9e0f1a2b3c01",
+    "term": "en:Referral | ru:Направление | ar:إحالة, تحويل طبي | fr:Référence médicale | es:Derivación médica",
+    "hebrew": "הפניה",
+    "explanation": "Medical referral. Must be הפניה."
+  },
+  {
+    "id": "0a1b2c3d-4e5f-4a6b-7c8d-9e0f1a2b3c02",
+    "term": "en:Appeal, Recurso | ru:Апелляция, Возражение | ar:اعتراض, استئناف | fr:Recours",
+    "hebrew": "ערר",
+    "explanation": "Administrative appeal. Must be ערר — not ערעור (court appeal)."
+  },
+  {
+    "id": "0a1b2c3d-4e5f-4a6b-7c8d-9e0f1a2b3c03",
+    "term": "en:Objection, Objection | ru:Возражение, Обжалование | ar:اعتراض | fr:Objeción",
+    "hebrew": "השגה",
+    "explanation": "Formal objection to admin decision (arnona, tax). Must be השגה."
+  },
+  {
+    "id": "1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c00",
+    "term": "en:Arnona, Municipal tax | ru:Муниципальный налог, Арнона | ar:ضريبة بلدية, أرنونا | fr:Taxe municipale | es:Impuesto municipal",
+    "hebrew": "ארנונה",
+    "explanation": "Israeli property tax. Must be ארנונה — never מס עירוני or מס רכוש."
+  },
+  {
+    "id": "1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c01",
+    "term": "en:Building permit | ru:Разрешение на строительство | ar:رخصة بناء, تصريح بناء | fr:Permis de construire | es:Permiso de construcción",
+    "hebrew": "היתר בנייה",
+    "explanation": "Must be היתר בנייה — not רישיון בנייה."
+  },
+  {
+    "id": "1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c02",
+    "term": "en:Zoning plan, Plan de zonificación | ru:План зонирования | ar:مخطط تنظيم | fr:Plan d'urbanisme",
+    "hebrew": "תוכנית בניין עיר",
+    "explanation": "Must be תוכנית בניין עיר or תב\"ע."
+  },
+  {
+    "id": "2a3b4c5d-6e7f-4a8b-9c0d-1e2f3a4b5c00",
+    "term": "en:Passport renewal | ru:Продление паспорта | ar:تجديد جواز السفر | fr:Renouvellement de passeport | es:Renovación de pasaporte",
+    "hebrew": "חידוש דרכון",
+    "explanation": "Must be חידוש דרכון."
+  },
+  {
+    "id": "2a3b4c5d-6e7f-4a8b-9c0d-1e2f3a4b5c01",
+    "term": "en:Biometric passport | ru:Биометрический паспорт | ar:جواز سفر بيومتري | fr:Passeport biométrique | es:Pasaporte biométrico",
+    "hebrew": "דרכון ביומטרי",
+    "explanation": "Must be דרכון ביומטרי."
+  },
+  {
+    "id": "2a3b4c5d-6e7f-4a8b-9c0d-1e2f3a4b5c02",
+    "term": "en:Document de voyage, Travel document | ru:Проездной документ | ar:وثيقة سفر | fr:Documento de viaje",
+    "hebrew": "מסמך נסיעה",
+    "explanation": "Must be מסמך נסיעה."
+  },
+  {
+    "id": "2a3b4c5d-6e7f-4a8b-9c0d-1e2f3a4b5c03",
+    "term": "en:Laissez-passer, Laissez-passer | ru:Пропуск | ar:تصريح مرور | fr:Salvoconducto",
+    "hebrew": "תעודת מעבר",
+    "explanation": "Emergency travel document. Must be תעודת מעבר."
+  },
+  {
+    "id": "2a3b4c5d-6e7f-4a8b-9c0d-1e2f3a4b5c04",
+    "term": "en:Consular services, Services consulaires | ru:Консульские услуги | ar:خدمات قنصلية | fr:Servicios consulares",
+    "hebrew": "שירותים קונסולריים",
+    "explanation": "Must be שירותים קונסולריים."
+  },
+  {
+    "id": "2a3b4c5d-6e7f-4a8b-9c0d-1e2f3a4b5c05",
+    "term": "en:Apostilla, Apostille, Apostille | ru:Апостиль | ar:أبوستيل",
+    "hebrew": "אפוסטיל",
+    "explanation": "Must be אפוסטיל (transliteration)."
+  },
+  {
+    "id": "3a4b5c6d-7e8f-4a9b-0c1d-2e3f4a5b6c00",
+    "term": "en:Population and Immigration Authority | ru:Управление регистрации населения и иммиграции | ar:سلطة السكان والهجرة | fr:Autorité de la population et de l'immigration | es:Autoridad de Población e Inmigración",
+    "hebrew": "רשות האוכלוסין וההגירה",
+    "explanation": "Must be רשות האוכלוסין וההגירה."
+  },
+  {
+    "id": "3a4b5c6d-7e8f-4a9b-0c1d-2e3f4a5b6c01",
+    "term": "en:Population Registry | ru:Реестр населения | ar:سجل السكان | fr:Registre de la population | es:Registro de Población",
+    "hebrew": "מרשם האוכלוסין",
+    "explanation": "Must be מרשם האוכלוסין — not רישום אוכלוסין."
+  },
+  {
+    "id": "3a4b5c6d-7e8f-4a9b-0c1d-2e3f4a5b6c02",
+    "term": "en:Registration extract | ru:Выписка из реестра | ar:مستخرج تسجيل | fr:Extrait d'inscription | es:Extracto de registro",
+    "hebrew": "תמצית רישום",
+    "explanation": "Must be תמצית רישום."
+  },
+  {
+    "id": "3a4b5c6d-7e8f-4a9b-0c1d-2e3f4a5b6c03",
+    "term": "en:Ministry of Interior | ru:Министерство внутренних дел, МВД | ar:وزارة الداخلية | fr:Ministère de l'Intérieur | es:Ministerio del Interior",
+    "hebrew": "משרד הפנים",
+    "explanation": "Must be משרד הפנים."
+  },
+  {
+    "id": "3a4b5c6d-7e8f-4a9b-0c1d-2e3f4a5b6c04",
+    "term": "en:Ministry of Foreign Affairs | ru:Министерство иностранных дел, МИД | ar:وزارة الخارجية | fr:Ministère des Affaires étrangères | es:Ministerio de Relaciones Exteriores",
+    "hebrew": "משרד החוץ",
+    "explanation": "Must be משרד החוץ."
+  },
+  {
+    "id": "4a5b6c7d-8e9f-4a0b-1c2d-3e4f5a6b7c00",
+    "term": "en:Power of attorney | ru:Доверенность | ar:توكيل, توكيل رسمي | fr:Procuration | es:Poder notarial",
+    "hebrew": "ייפוי כוח",
+    "explanation": "Must be ייפוי כוח."
+  },
+  {
+    "id": "4a5b6c7d-8e9f-4a0b-1c2d-3e4f5a6b7c01",
+    "term": "en:Affidavit | ru:Аффидавит, Заявление под присягой | ar:إفادة خطية, تصريح مشفوع بالقسم | fr:Déclaration sous serment | es:Declaración jurada",
+    "hebrew": "תצהיר",
+    "explanation": "Must be תצהיר."
+  },
+  {
+    "id": "4a5b6c7d-8e9f-4a0b-1c2d-3e4f5a6b7c02",
+    "term": "en:Declaration | ru:Декларация, Заявление | ar:إقرار, تصريح | fr:Déclaration | es:Declaración",
+    "hebrew": "הצהרה",
+    "explanation": "Must be הצהרה — not הכרזה (public proclamation)."
+  },
+  {
+    "id": "4a5b6c7d-8e9f-4a0b-1c2d-3e4f5a6b7c03",
+    "term": "en:Firma, Signature, Signature | ru:Подпись | ar:توقيع",
+    "hebrew": "חתימה",
+    "explanation": "Must be חתימה."
+  },
+  {
+    "id": "4a5b6c7d-8e9f-4a0b-1c2d-3e4f5a6b7c04",
+    "term": "en:Bank account | ru:Банковский счёт | ar:حساب بنكي, حساب مصرفي | fr:Compte bancaire | es:Cuenta bancaria",
+    "hebrew": "חשבון בנק",
+    "explanation": "Must be חשבון בנק."
+  },
+  {
+    "id": "4a5b6c7d-8e9f-4a0b-1c2d-3e4f5a6b7c05",
+    "term": "en:Branch number | ru:Номер отделения | ar:رقم الفرع | fr:Numéro d'agence | es:Número de sucursal",
+    "hebrew": "מספר סניף",
+    "explanation": "Must be מספר סניף."
+  },
+  {
+    "id": "5a6b7c8d-9e0f-4a1b-2c3d-4e5f6a7b8c00",
+    "term": "en:Senior citizen | ru:Пожилой гражданин, Пенсионер | ar:مواطن مسن, مواطن كبير بالسن | fr:Personne âgée | es:Ciudadano mayor",
+    "hebrew": "אזרח ותיק",
+    "explanation": "Modern official term. Must be אזרח ותיק — not קשיש or זקן."
+  },
+  {
+    "id": "5a6b7c8d-9e0f-4a1b-2c3d-4e5f6a7b8c01",
+    "term": "en:Person with disability | ru:Человек с инвалидностью | ar:شخص ذو إعاقة | fr:Personne en situation de handicap | es:Persona con discapacidad",
+    "hebrew": "אדם עם מוגבלות",
+    "explanation": "Must be אדם עם מוגבלות."
+  },
+  {
+    "id": "5a6b7c8d-9e0f-4a1b-2c3d-4e5f6a7b8c02",
+    "term": "en:Mobility disability, Discapacidad motriz | ru:Ограниченная подвижность | ar:إعاقة حركية | fr:Handicap moteur",
+    "hebrew": "מוגבלות בניידות",
+    "explanation": "Must be מוגבלות בניידות."
+  },
+  {
+    "id": "5a6b7c8d-9e0f-4a1b-2c3d-4e5f6a7b8c03",
+    "term": "en:Guardian | ru:Опекун | ar:وصي | fr:Tuteur | es:Tutor legal",
+    "hebrew": "אפוטרופוס",
+    "explanation": "Must be אפוטרופוס — not שומר or מטפל."
+  },
+  {
+    "id": "5a6b7c8d-9e0f-4a1b-2c3d-4e5f6a7b8c04",
+    "term": "en:Minor | ru:Несовершеннолетний | ar:قاصر | fr:Mineur | es:Menor de edad",
+    "hebrew": "קטין",
+    "explanation": "Must be קטין."
+  },
+  {
+    "id": "6a7b8c9d-0e1f-4a2b-3c4d-5e6f7a8b9c00",
+    "term": "en:Rented apartment | ru:Арендованная квартира, Съёмная квартира | ar:شقة مستأجرة | fr:Appartement loué | es:Apartamento alquilado",
+    "hebrew": "דירה שכורה",
+    "explanation": "Housing type dropdown. Must be דירה שכורה."
+  },
+  {
+    "id": "6a7b8c9d-0e1f-4a2b-3c4d-5e6f7a8b9c01",
+    "term": "en:Owned apartment | ru:Собственная квартира | ar:شقة مملوكة | fr:Appartement en propriété | es:Apartamento propio",
+    "hebrew": "דירה בבעלות",
+    "explanation": "Must be דירה בבעלות."
+  },
+  {
+    "id": "6a7b8c9d-0e1f-4a2b-3c4d-5e6f7a8b9c02",
+    "term": "en:Public housing | ru:Социальное жильё | ar:سكن عام, إسكان عام | fr:Logement social | es:Vivienda pública",
+    "hebrew": "דיור ציבורי",
+    "explanation": "Must be דיור ציבורי."
+  },
+  {
+    "id": "6a7b8c9d-0e1f-4a2b-3c4d-5e6f7a8b9c03",
+    "term": "en:Absorption center | ru:Центр абсорбции | ar:مركز استيعاب | fr:Centre d'absorption | es:Centro de absorción",
+    "hebrew": "מרכז קליטה",
+    "explanation": "Housing for new immigrants. Must be מרכז קליטה."
+  },
+  {
+    "id": "7a8b9c0d-1e2f-4a3b-4c5d-6e7f8a9b0c00",
+    "term": "en:Ulpan, Oulpan | ru:Ульпан | ar:أولبان",
+    "hebrew": "אולפן",
+    "explanation": "Hebrew language school for immigrants. Must be אולפן — never translate as 'studio' or 'school'."
+  },
+  {
+    "id": "7a8b9c0d-1e2f-4a3b-4c5d-6e7f8a9b0c01",
+    "term": "en:Absorption basket | ru:Корзина абсорбции | ar:سلة استيعاب | fr:Panier d'absorption | es:Canasta de absorción",
+    "hebrew": "סל קליטה",
+    "explanation": "Financial aid for new immigrants. Must be סל קליטה."
+  },
+  {
+    "id": "7a8b9c0d-1e2f-4a3b-4c5d-6e7f8a9b0c02",
+    "term": "en:Ministry of Absorption | ru:Министерство алии и интеграции, Министерство абсорбции | ar:وزارة الهجرة والاستيعاب | fr:Ministère de l'Immigration et de l'Intégration | es:Ministerio de Absorción",
+    "hebrew": "משרד העלייה והקליטה",
+    "explanation": "Must be משרד העלייה והקליטה."
+  },
+  {
+    "id": "8a9b0c1d-2e3f-4a4b-5c6d-7e8f9a0b1c00",
+    "term": "en:SARL, S.A., Ltd, S.L. | ru:ООО, ОАО | ar:ذ.م.م, م.م",
+    "hebrew": "בע\"מ",
+    "explanation": "Israeli limited liability suffix. Must be בע\"מ."
+  },
+  {
+    "id": "8a9b0c1d-2e3f-4a4b-5c6d-7e8f9a0b1c01",
+    "term": "en:NIS, Shekel, Sheqel | ru:Шекель, Новый шекель | ar:شيكل, شيقل",
+    "hebrew": "ש\"ח",
+    "explanation": "Israeli New Shekel. Must be ש\"ח."
+  },
+  {
+    "id": "9a0b1c2d-3e4f-4a5b-6c7d-8e9f0a1b2c00",
+    "term": "en:Stolen, Robado | ru:Украден | ar:مسروق, سُرق | fr:Volé",
+    "hebrew": "נגנב",
+    "explanation": "Lost passport form dropdown. Must be נגנב."
+  },
+  {
+    "id": "9a0b1c2d-3e4f-4a5b-6c7d-8e9f0a1b2c01",
+    "term": "en:Perdu, Lost, Perdido | ru:Утерян, Потерян | ar:مفقود, ضائع",
+    "hebrew": "אבד",
+    "explanation": "Lost passport form dropdown. Must be אבד."
+  },
+  {
+    "id": "9a0b1c2d-3e4f-4a5b-6c7d-8e9f0a1b2c02",
+    "term": "en:Damaged | ru:Повреждён | ar:تالف, متضرر | fr:Endommagé | es:Dañado",
+    "hebrew": "ניזוק",
+    "explanation": "Document status dropdown. Must be ניזוק."
+  },
+  {
+    "id": "aa0b1c2d-3e4f-4a5b-6c7d-8e9f0a1b2c01",
+    "term": "en:Ruble, Rouble | ru:Рубль, Рублей | ar:روبل",
+    "hebrew": "רובל",
+    "explanation": "Russian currency. Must be רובל."
+  },
+  {
+    "id": "aa0b1c2d-3e4f-4a5b-6c7d-8e9f0a1b2c02",
+    "term": "en:Euro | ru:Евро | ar:يورو, أورو",
+    "hebrew": "אירו",
+    "explanation": "Must be אירו — not יורו."
+  },
+  {
+    "id": "aa0b1c2d-3e4f-4a5b-6c7d-8e9f0a1b2c03",
+    "term": "en:Dollar | ru:Доллар | ar:دولار",
+    "hebrew": "דולר",
+    "explanation": "Must be דולר."
+  }
+]

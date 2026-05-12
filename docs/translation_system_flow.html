@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מערכת תרגום — תרשים זרימה</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface-alt: #1a2235;
+    --border: #1e293b;
+    --accent: #38bdf8;
+    --accent-glow: rgba(56, 189, 248, 0.15);
+    --green: #34d399;
+    --green-glow: rgba(52, 211, 153, 0.15);
+    --orange: #fb923c;
+    --orange-glow: rgba(251, 146, 60, 0.15);
+    --purple: #a78bfa;
+    --purple-glow: rgba(167, 139, 250, 0.15);
+    --red: #f87171;
+    --red-glow: rgba(248, 113, 113, 0.15);
+    --teal: #2dd4bf;
+    --teal-glow: rgba(45, 212, 191, 0.15);
+    --text: #e2e8f0;
+    --text-dim: #94a3b8;
+    --text-muted: #64748b;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'Heebo', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(56, 189, 248, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(56, 189, 248, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 32px 80px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .header .badge {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-glow);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 100px;
+    padding: 6px 20px;
+    margin-bottom: 20px;
+  }
+
+  .header h1 {
+    font-size: 42px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #e2e8f0 0%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 12px;
+  }
+
+  .header p {
+    color: var(--text-dim);
+    font-size: 17px;
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Flow connector line */
+  .flow-step {
+    position: relative;
+    margin-bottom: 0;
+  }
+
+  .flow-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: -32px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 32px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    opacity: 0.4;
+  }
+
+  .flow-step:not(:last-child) {
+    margin-bottom: 32px;
+  }
+  .flow-step:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Arrow between steps */
+  .arrow-down {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    color: var(--text-muted);
+    font-size: 20px;
+    opacity: 0.5;
+  }
+
+  .arrow-down svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--accent);
+    opacity: 0.6;
+  }
+
+  /* Card base */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.3s;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(56, 189, 248, 0.2);
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 3px;
+  }
+
+  .card.accent::before { background: linear-gradient(90deg, var(--accent), transparent); }
+  .card.green::before { background: linear-gradient(90deg, var(--green), transparent); }
+  .card.orange::before { background: linear-gradient(90deg, var(--orange), transparent); }
+  .card.purple::before { background: linear-gradient(90deg, var(--purple), transparent); }
+  .card.red::before { background: linear-gradient(90deg, var(--red), transparent); }
+  .card.teal::before { background: linear-gradient(90deg, var(--teal), transparent); }
+
+  .step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+
+  .card.accent .step-number { background: var(--accent-glow); color: var(--accent); border: 1px solid rgba(56,189,248,0.2); }
+  .card.green .step-number { background: var(--green-glow); color: var(--green); border: 1px solid rgba(52,211,153,0.2); }
+  .card.orange .step-number { background: var(--orange-glow); color: var(--orange); border: 1px solid rgba(251,146,60,0.2); }
+  .card.purple .step-number { background: var(--purple-glow); color: var(--purple); border: 1px solid rgba(167,139,250,0.2); }
+  .card.red .step-number { background: var(--red-glow); color: var(--red); border: 1px solid rgba(248,113,113,0.2); }
+  .card.teal .step-number { background: var(--teal-glow); color: var(--teal); border: 1px solid rgba(45,212,191,0.2); }
+
+  .card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .card p {
+    color: var(--text-dim);
+    font-size: 15px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* Code block */
+  .code-block {
+    background: #0d1117;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-top: 16px;
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.8;
+    color: #c9d1d9;
+    direction: ltr;
+    text-align: left;
+    overflow-x: auto;
+  }
+
+  .code-block .key { color: var(--accent); }
+  .code-block .str { color: var(--green); }
+  .code-block .comment { color: var(--text-muted); font-style: italic; }
+  .code-block .type { color: var(--purple); }
+  .code-block .num { color: var(--orange); }
+
+  /* Branch cards */
+  .branch-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .branch {
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    position: relative;
+  }
+
+  .branch.yes { border-right: 3px solid var(--green); }
+  .branch.no { border-right: 3px solid var(--orange); }
+
+  .branch-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  .branch.yes .branch-label { color: var(--green); }
+  .branch.no .branch-label { color: var(--orange); }
+
+  .branch h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .branch p {
+    color: var(--text-dim);
+    font-size: 13px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* Language pills */
+  .lang-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .lang-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(56, 189, 248, 0.06);
+    border: 1px solid rgba(56, 189, 248, 0.15);
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  .lang-pill code {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    background: var(--accent-glow);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  /* Model tag */
+  .model-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--purple-glow);
+    border: 1px solid rgba(167, 139, 250, 0.2);
+    border-radius: 8px;
+    padding: 8px 16px;
+    margin-top: 14px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--purple);
+  }
+
+  .model-tag .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--purple);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  /* Eval section */
+  .eval-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .eval-item {
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .eval-item .label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+
+  .eval-item .value {
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  /* Scale bar */
+  .scale-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .scale-track {
+    flex: 1;
+    height: 8px;
+    border-radius: 100px;
+    background: linear-gradient(90deg, var(--red), var(--orange), var(--green));
+    position: relative;
+  }
+
+  .scale-labels {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+
+  /* GCP badge */
+  .infra-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(52, 211, 153, 0.06);
+    border: 1px solid rgba(52, 211, 153, 0.15);
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 13px;
+    color: var(--green);
+    margin-top: 10px;
+  }
+
+  .infra-badge svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+
+  /* Glossary term visual */
+  .glossary-term-demo {
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-top: 16px;
+  }
+
+  .glossary-term-demo .demo-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--teal);
+    margin-bottom: 12px;
+  }
+
+  .glossary-term-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+
+  .glossary-lang-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(45, 212, 191, 0.08);
+    border: 1px solid rgba(45, 212, 191, 0.2);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  .glossary-lang-chip code {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--teal);
+    background: var(--teal-glow);
+    padding: 2px 5px;
+    border-radius: 4px;
+  }
+
+  .glossary-pipe {
+    font-family: var(--mono);
+    font-size: 16px;
+    color: var(--teal);
+    opacity: 0.5;
+  }
+
+  .glossary-arrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+
+  .glossary-arrow .arrow-icon {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--teal);
+  }
+
+  .glossary-arrow .result {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    background: #0d1117;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 12px;
+    direction: ltr;
+    text-align: left;
+    flex: 1;
+    overflow-x: auto;
+  }
+
+  .glossary-arrow .result .pipe { color: var(--teal); }
+  .glossary-arrow .result .hebrew-val { color: var(--green); }
+
+  /* Responsive */
+  @media (max-width: 700px) {
+    .branch-container { grid-template-columns: 1fr; }
+    .header h1 { font-size: 28px; }
+    .container { padding: 32px 16px 48px; }
+    .card { padding: 24px; }
+    .eval-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="badge">System Architecture</div>
+    <h1>מערכת תרגום אוטומטית</h1>
+    <p>תרשים זרימה — מערך הדיגיטל → שרת תרגום על GCP → תוצאה מתורגמת + הערכת איכות<br>
+    <span style="font-size:14px;color:var(--text-muted);margin-top:8px;display:inline-block;">תמיכה במבנה JSON מקונן בכל עומק • חיפוש רקורסיבי של שדות • שמירת מבנה מקורי</span></p>
+  </div>
+
+  <!-- Step 1: Request -->
+  <div class="flow-step">
+    <div class="card accent">
+      <div class="step-number">01</div>
+      <h3>שליחת בקשה מהלקוח</h3>
+      <p>אתר מערך הדיגיטל שולח בקשת POST לשרת התרגום על GCP (Nymbos). הבקשה מכילה JSON עם <strong>מבנה מקונן (nested)</strong> כלשהו בתוך אובייקט <code style="color:var(--accent)">data</code> — המערכת תומכת בכל עומק ומבנה. השדה <code style="color:var(--accent)">fields_to_translate</code> מגדיר את רשימת השדות לתרגום, כאשר לכל שדה מצוין סוג ההוראה: <code style="color:var(--green)">default</code> (תרגום רגיל) או <code style="color:var(--orange)">exact</code> (שם מקום — תרגום מדויק לעברית).</p>
+      <div class="infra-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        GCP — Nymbos Server
+      </div>
+      <div class="code-block">
+<span class="comment">// POST /api/translate</span>
+<span class="comment">// המערכת תומכת במבנה JSON מקונן בעומק כלשהו</span>
+{
+  <span class="key">"formID"</span>: <span class="str">"xxx@yyy.gov.il"</span>,
+  <span class="key">"fields_to_translate"</span>: [
+    { <span class="key">"field_name"</span>: <span class="str">"previouslySent"</span>, <span class="key">"translation_instructions"</span>: <span class="str">"default"</span> },
+    { <span class="key">"field_name"</span>: <span class="str">"selectApplicationTopic"</span>, <span class="key">"translation_instructions"</span>: <span class="str">"default"</span> },
+    { <span class="key">"field_name"</span>: <span class="str">"subjectAppeal"</span>, <span class="key">"translation_instructions"</span>: <span class="str">"default"</span> },
+    { <span class="key">"field_name"</span>: <span class="str">"contentAppeal"</span>, <span class="key">"translation_instructions"</span>: <span class="str">"default"</span> },
+    { <span class="key">"field_name"</span>: <span class="str">"address"</span>, <span class="key">"translation_instructions"</span>: <span class="str">"default"</span> }
+  ],
+  <span class="key">"data"</span>: {  <span class="comment">// מבנה מקונן — המערכת מחפשת את השדות בכל רמת עומק</span>
+    <span class="key">"entry"</span>: {
+      <span class="key">"fillsApplication"</span>: {
+        <span class="key">"dataCode"</span>: <span class="str">"1"</span>,
+        <span class="key">"dataText"</span>: <span class="str">"податель заявления"</span>
+      },
+      <span class="key">"selectApplicationTopic"</span>: {
+        <span class="key">"dataCode"</span>: <span class="str">"2"</span>,
+        <span class="key">"dataText"</span>: <span class="str">"просьба об очереди на консульский прием"</span>
+      },
+      <span class="key">"previouslySent"</span>: {
+        <span class="key">"dataCode"</span>: <span class="str">"2"</span>,
+        <span class="key">"dataText"</span>: <span class="str">"нет"</span>
+      }
+    },
+    <span class="key">"consularCheck"</span>: {
+      <span class="key">"questionnaireNumberCons"</span>: <span class="str">"12345678"</span>,
+      <span class="key">"dtDateSendQuest"</span>: <span class="str">"27/01/2018"</span>
+    },
+    <span class="key">"mahutHafnaya"</span>: {
+      <span class="key">"tblMahutHafnayaList"</span>: [{  <span class="comment">// מערך מקונן בתוך אובייקט</span>
+        <span class="key">"questId"</span>: <span class="str">"12345678"</span>,
+        <span class="key">"lname"</span>: <span class="str">"Иессей"</span>,
+        <span class="key">"fname"</span>: <span class="str">"Елисавета"</span>,
+        <span class="key">"idNum"</span>: <span class="str">"000000018"</span>,
+        <span class="key">"email"</span>: <span class="str">"rrrr@mail.ru"</span>,
+        <span class="key">"address"</span>: <span class="str">"55555, Пол, д. 00, кв. 00"</span>,
+        <span class="key">"subjectAppeal"</span>: <span class="str">"Помощь для записи на приём"</span>,
+        <span class="key">"contentAppeal"</span>: <span class="str">"Здравствуйте, прошу помочь мне встать в очередь"</span>
+      }]
+    }
+  }
+}
+<span class="comment">// translation_instructions: "default" | "exact"</span>
+<span class="comment">// המערכת סורקת את כל ה-JSON באופן רקורסיבי ומוצאת את השדות לפי שם</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="arrow-down">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+
+  <!-- Step 2: Language Detection -->
+  <div class="flow-step">
+    <div class="card green">
+      <div class="step-number">02</div>
+      <h3>זיהוי שפת הקלט — חיפוש רקורסיבי</h3>
+      <p>המערכת עוברת על כל שדה המופיע ברשימת <code style="color:var(--accent)">fields_to_translate</code> ומחפשת אותו <strong>בכל עומק במבנה ה-JSON</strong> (רקורסיבית). כאשר השדה נמצא, המערכת מזהה אוטומטית את שפת הטקסט ובודקת האם היא נמצאת בבנק השפות הנתמכות. השדות יכולים להיות בכל רמת קינון — בתוך אובייקטים, מערכים, או אובייקטים מקוננים.</p>
+      <div class="lang-pills">
+        <div class="lang-pill">עברית <code>he</code></div>
+        <div class="lang-pill">אנגלית <code>en</code></div>
+        <div class="lang-pill">צרפתית <code>fr</code></div>
+        <div class="lang-pill">ספרדית <code>es</code></div>
+        <div class="lang-pill">ערבית <code>ar</code></div>
+        <div class="lang-pill">רוסית <code>ru</code></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="arrow-down">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+
+  <!-- Step 3: Decision Branch -->
+  <div class="flow-step">
+    <div class="card orange">
+      <div class="step-number">03</div>
+      <h3>האם השדה בעברית?</h3>
+      <p>נקודת החלטה לכל שדה — המערכת בודקת כל שדה בנפרד. שדות שכבר בעברית מוחזרים כמו שהם, ושדות בשפות אחרות נשלחים למנוע התרגום.</p>
+
+      <div class="branch-container">
+        <div class="branch yes">
+          <div class="branch-label">✓ כן — עברית</div>
+          <h4>השדה נשמר כמו שהוא</h4>
+          <p>הערך של השדה מוחזר ללא עיבוד נוסף, בכל מקום שבו הוא נמצא במבנה המקונן. השפה המזוהה מסומנת כ-<code>he</code>.</p>
+          <div class="code-block" style="font-size:12px;">
+<span class="comment">// דוגמה: שדה שכבר בעברית (נמצא בתוך data.entry)</span>
+{
+  <span class="key">"field_name"</span>: <span class="str">"previouslySent"</span>,
+  <span class="key">"language_detected"</span>: <span class="str">"he"</span>,
+  <span class="key">"instruction"</span>: <span class="str">"default"</span>,
+  <span class="key">"scores"</span>: <span class="type">null</span>           <span class="comment">// אין הערכה — כבר בעברית</span>
+}
+          </div>
+        </div>
+
+        <div class="branch no">
+          <div class="branch-label">✗ לא — שפה אחרת</div>
+          <h4>המשך לתרגום</h4>
+          <p>השפה מזוהה מתוך בנק השפות הנתמכות והשדה נשלח לשלב התרגום באמצעות LLM, בהתאם ל-<code style="color:var(--accent)">translation_instructions</code> שהוגדרו לו. התרגום מתבצע במקום — בתוך המבנה המקונן.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="arrow-down">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+
+  <!-- Step 4: Glossary -->
+  <div class="flow-step">
+    <div class="card teal">
+      <div class="step-number">04</div>
+      <h3>מילון מונחים רב-לשוני — Glossary</h3>
+      <p>לפני שליחת הטקסט למודל, המערכת טוענת את מילון המונחים ומזריקה אותו לפרומפט. כל מונח במילון יכול להכיל את התרגום בשפות מרובות — כך ה-LLM מזהה את המונח <strong>בכל שפת מקור</strong> ומתרגם לעברית בצורה אחידה.</p>
+      <p style="margin-top:8px;">המשתמש מזין את המונח בשפה אחת או יותר, והמערכת שומרת אותן כשדה <code style="color:var(--teal)">term</code> אחד עם תו מפריד <code style="color:var(--teal)">|</code>.</p>
+
+      <div class="lang-pills" style="margin-top:16px;">
+        <div class="lang-pill">עברית <code>he</code></div>
+        <div class="lang-pill">אנגלית <code>en</code></div>
+        <div class="lang-pill">רוסית <code>ru</code></div>
+        <div class="lang-pill">ערבית <code>ar</code></div>
+        <div class="lang-pill">צרפתית <code>fr</code></div>
+        <div class="lang-pill">ספרדית <code>es</code></div>
+      </div>
+
+      <div class="glossary-term-demo">
+        <div class="demo-label">דוגמה — הזנת מונח</div>
+        <div class="glossary-term-row">
+          <span class="glossary-lang-chip"><code>en</code> Permanent resident</span>
+          <span class="glossary-pipe">|</span>
+          <span class="glossary-lang-chip"><code>ru</code> Постоянный житель</span>
+          <span class="glossary-pipe">|</span>
+          <span class="glossary-lang-chip"><code>ar</code> مقيم دائم</span>
+          <span class="glossary-pipe">|</span>
+          <span class="glossary-lang-chip"><code>fr</code> Résident permanent</span>
+          <span class="glossary-pipe">|</span>
+          <span class="glossary-lang-chip"><code>es</code> Residente permanente</span>
+        </div>
+        <div class="glossary-arrow">
+          <span class="arrow-icon">→</span>
+          <span style="font-size:13px;color:var(--text-dim);">עברית:</span>
+          <span style="font-family:var(--mono);font-size:15px;font-weight:500;color:var(--green);">תושב קבע</span>
+        </div>
+      </div>
+
+      <div class="code-block" style="margin-top:16px; font-size:12px;">
+<span class="comment">// Behind the scenes — glossary.json</span>
+{
+  <span class="key">"id"</span>: <span class="str">"b2c3d4e5-..."</span>,
+  <span class="key">"term"</span>: <span class="str">"Permanent resident | Постоянный житель | مقيم دائم | Résident permanent | Residente permanente"</span>,
+  <span class="key">"hebrew"</span>: <span class="str">"תושב קבע"</span>,
+  <span class="key">"explanation"</span>: <span class="str">"Must always be תושב קבע (not תושב קבוע)"</span>
+}
+
+<span class="comment">// Injected into LLM prompt:</span>
+<span class="comment">// • Permanent resident | Постоянный житель | مقيم دائم | ... → תושב קבע</span>
+<span class="comment">//   (Must always be תושב קבע)</span>
+<span class="comment">//</span>
+<span class="comment">// The LLM matches ANY variant in the source text and uses the Hebrew term.</span>
+<span class="comment">// Even if the exact variant isn't listed, the LLM recognises</span>
+<span class="comment">// the same concept in another language and applies the Hebrew term.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="arrow-down">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+
+  <!-- Step 5: Translation -->
+  <div class="flow-step">
+    <div class="card purple">
+      <div class="step-number">05</div>
+      <h3>תרגום באמצעות LLM — שמירת מבנה מקונן</h3>
+      <p>כל שדה שאינו בעברית נשלח ל-Google Cloud AI עם מודל Gemini לתרגום משפת המקור לעברית. המודל מקבל הנחיות בהתאם לסוג ההוראה: <code style="color:var(--green)">default</code> — תרגום רגיל עם שמירה על משמעות, הקשר וטון. <code style="color:var(--orange)">exact</code> — תרגום מדויק של שם מקום לעברית (כגון New York → ניו יורק). <strong>מבנה ה-JSON המקונן נשמר בדיוק כמו שהוא</strong> — רק הערכים של השדות מתורגמים במקום.</p>
+      <div class="model-tag">
+        <span class="dot"></span>
+        Gemini 2.5 Flash — Google Cloud AI
+      </div>
+      <div class="code-block" style="margin-top:16px; font-size:12px;">
+<span class="comment">// Response — המבנה המקונן נשמר, רק הערכים מתורגמים</span>
+{
+  <span class="key">"formID"</span>: <span class="str">"xxx@yyy.gov.il"</span>,
+  <span class="key">"data"</span>: {  <span class="comment">// המבנה המקונן נשאר זהה</span>
+    <span class="key">"entry"</span>: {
+      <span class="key">"fillsApplication"</span>: {
+        <span class="key">"dataCode"</span>: <span class="str">"1"</span>,
+        <span class="key">"dataText"</span>: <span class="str">"податель заявления"</span>  <span class="comment">// לא ברשימה</span>
+      },
+      <span class="key">"selectApplicationTopic"</span>: {
+        <span class="key">"dataCode"</span>: <span class="str">"2"</span>,
+        <span class="key">"dataText"</span>: <span class="str">"בקשה לתור לקבלת פנים קונסולרית"</span>  <span class="comment">// מתורגם</span>
+      },
+      <span class="key">"previouslySent"</span>: {
+        <span class="key">"dataCode"</span>: <span class="str">"2"</span>,
+        <span class="key">"dataText"</span>: <span class="str">"לא"</span>  <span class="comment">// מתורגם</span>
+      }
+    },
+    <span class="key">"mahutHafnaya"</span>: {
+      <span class="key">"tblMahutHafnayaList"</span>: [{  <span class="comment">// מערך נשמר כמקור</span>
+        <span class="key">"questId"</span>: <span class="str">"12345678"</span>,
+        <span class="key">"lname"</span>: <span class="str">"Иессей"</span>,
+        <span class="key">"address"</span>: <span class="str">"55555, פול, בית 00, דירה 00"</span>,  <span class="comment">// מתורגם</span>
+        <span class="key">"subjectAppeal"</span>: <span class="str">"עזרה בתיאום תור"</span>,  <span class="comment">// מתורגם</span>
+        <span class="key">"contentAppeal"</span>: <span class="str">"שלום, אבקש עזרה להיכנס לתור"</span>  <span class="comment">// מתורגם</span>
+      }]
+    }
+  },
+  <span class="key">"translation_metadata"</span>: {
+    <span class="key">"fields_translated"</span>: [
+      {
+        <span class="key">"field_name"</span>: <span class="str">"previouslySent"</span>,
+        <span class="key">"language_detected"</span>: <span class="str">"ru"</span>,
+        <span class="key">"instruction"</span>: <span class="str">"default"</span>,
+        <span class="key">"scores"</span>: { <span class="key">"faithfulness"</span>: <span class="num">10</span>, <span class="key">"fluency"</span>: <span class="num">10</span>, <span class="key">"glossary_compliance"</span>: <span class="num">10</span>, <span class="key">"overall"</span>: <span class="num">10</span> }
+      },
+      {
+        <span class="key">"field_name"</span>: <span class="str">"selectApplicationTopic"</span>,
+        <span class="key">"language_detected"</span>: <span class="str">"ru"</span>,
+        <span class="key">"instruction"</span>: <span class="str">"default"</span>,
+        <span class="key">"scores"</span>: { <span class="key">"faithfulness"</span>: <span class="num">9</span>, <span class="key">"fluency"</span>: <span class="num">10</span>, <span class="key">"glossary_compliance"</span>: <span class="num">10</span>, <span class="key">"overall"</span>: <span class="num">9.5</span> }
+      },
+      {
+        <span class="key">"field_name"</span>: <span class="str">"subjectAppeal"</span>,
+        <span class="key">"language_detected"</span>: <span class="str">"ru"</span>,
+        <span class="key">"instruction"</span>: <span class="str">"default"</span>,
+        <span class="key">"scores"</span>: { <span class="key">"faithfulness"</span>: <span class="num">10</span>, <span class="key">"fluency"</span>: <span class="num">10</span>, <span class="key">"glossary_compliance"</span>: <span class="num">10</span>, <span class="key">"overall"</span>: <span class="num">10</span> }
+      },
+      {
+        <span class="key">"field_name"</span>: <span class="str">"contentAppeal"</span>,
+        <span class="key">"language_detected"</span>: <span class="str">"ru"</span>,
+        <span class="key">"instruction"</span>: <span class="str">"default"</span>,
+        <span class="key">"scores"</span>: { <span class="key">"faithfulness"</span>: <span class="num">9</span>, <span class="key">"fluency"</span>: <span class="num">10</span>, <span class="key">"glossary_compliance"</span>: <span class="num">10</span>, <span class="key">"overall"</span>: <span class="num">9.5</span> }
+      },
+      {
+        <span class="key">"field_name"</span>: <span class="str">"address"</span>,
+        <span class="key">"language_detected"</span>: <span class="str">"ru"</span>,
+        <span class="key">"instruction"</span>: <span class="str">"default"</span>,
+        <span class="key">"scores"</span>: { <span class="key">"faithfulness"</span>: <span class="num">8</span>, <span class="key">"fluency"</span>: <span class="num">9</span>, <span class="key">"glossary_compliance"</span>: <span class="num">10</span>, <span class="key">"overall"</span>: <span class="num">8.7</span> }
+      }
+    ]
+  }
+}
+      </div>
+    </div>
+  </div>
+
+  <div class="arrow-down">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+
+  <!-- Step 6: Evaluation -->
+  <div class="flow-step">
+    <div class="card red">
+      <div class="step-number">06</div>
+      <h3>הערכת איכות — LLM as a Judge</h3>
+      <p>מודל LLM נפרד מקבל את התרגום האנושי (reference) ואת תרגום המערכת לכל שדה שתורגם (ללא תלות במיקומו במבנה המקונן), ומעניק ציון 1–10 על פי פרמטרים מוגדרים מראש. שדות שכבר היו בעברית לא מקבלים הערכה.</p>
+
+      <div class="eval-grid">
+        <div class="eval-item">
+          <div class="label">נאמנות למקור</div>
+          <div class="value" style="color: var(--green);">Faithfulness</div>
+        </div>
+        <div class="eval-item">
+          <div class="label">שטף לשוני</div>
+          <div class="value" style="color: var(--accent);">Fluency</div>
+        </div>
+        <div class="eval-item">
+          <div class="label">עמידה במילון מונחים</div>
+          <div class="value" style="color: var(--purple);">Glossary Compliance</div>
+        </div>
+        <div class="eval-item">
+          <div class="label">ציון כולל</div>
+          <div class="value" style="color: var(--text);">Overall</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <div class="scale-bar">
+          <span style="font-family:var(--mono);font-size:12px;color:var(--red);">1</span>
+          <div class="scale-track"></div>
+          <span style="font-family:var(--mono);font-size:12px;color:var(--green);">10</span>
+        </div>
+        <div class="scale-labels">
+          <span>תרגום גרוע</span>
+          <span>תרגום מושלם</span>
+        </div>
+      </div>
+
+      <div class="code-block" style="margin-top:16px; font-size:12px;">
+<span class="comment">// Evaluation Output — דוגמה לשדה contentAppeal (נמצא במבנה מקונן)</span>
+{
+  <span class="key">"field_name"</span>: <span class="str">"contentAppeal"</span>,
+  <span class="key">"language_detected"</span>: <span class="str">"ru"</span>,
+  <span class="key">"instruction"</span>: <span class="str">"default"</span>,
+  <span class="key">"scores"</span>: {
+    <span class="key">"faithfulness"</span>: <span class="num">9</span>,
+    <span class="key">"fluency"</span>: <span class="num">10</span>,
+    <span class="key">"glossary_compliance"</span>: <span class="num">10</span>,
+    <span class="key">"overall"</span>: <span class="num">9.5</span>
+  }
+}
+<span class="comment">// השדה נמצא ב-data.mahutHafnaya.tblMahutHafnayaList[0].contentAppeal</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    מערכת תרגום אוטומטית — מערך הדיגיטל &nbsp;•&nbsp; GCP Nymbos &nbsp;•&nbsp; Gemini 2.5
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>שירות תרגום — דשבורד</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0e1a;
+  --surface: #111827;
+  --surface-alt: #1a2235;
+  --border: #1e293b;
+  --accent: #38bdf8;
+  --accent-dim: #0c4a6e;
+  --green: #34d399;
+  --green-dim: #064e3b;
+  --yellow: #fbbf24;
+  --yellow-dim: #78350f;
+  --red: #f87171;
+  --red-dim: #7f1d1d;
+  --text: #e2e8f0;
+  --text-dim: #94a3b8;
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'Heebo', sans-serif;
+  --radius: 10px;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ── Header ─────────────────────────────────────── */
+
+.header {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-alt) 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 1.5rem 2rem;
+  text-align: center;
+}
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto 0.5rem;
+  gap: 2rem;
+}
+.header-logo {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  height: 60px;
+}
+.header-logo img {
+  height: 50px;
+  width: auto;
+  filter: brightness(1.1);
+}
+.header-logo:last-child img {
+  height: 75px;
+}
+.header-title {
+  flex: 1 1 auto;
+  text-align: center;
+}
+.header h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+.header p { color: var(--text-dim); font-size: 0.95rem; margin-top: 0.3rem; }
+
+/* ── Tabs ───────────────────────────────────────── */
+
+.tab-bar {
+  display: flex;
+  gap: 0;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  overflow-x: auto;
+}
+.tab-btn {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.tab-content { display: none; padding: 2rem; max-width: 960px; margin: 0 auto; }
+.tab-content.active { display: block; }
+
+/* ── Cards & Sections ───────────────────────────── */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  color: var(--accent);
+}
+
+.info-list { list-style: none; }
+.info-list li {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.92rem;
+}
+.info-list li:last-child { border-bottom: none; }
+
+pre.code-block {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  direction: ltr;
+  text-align: left;
+  overflow-x: auto;
+  color: var(--green);
+  line-height: 1.5;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.badge-blue { background: var(--accent-dim); color: var(--accent); }
+.badge-green { background: var(--green-dim); color: var(--green); }
+.badge-yellow { background: var(--yellow-dim); color: var(--yellow); }
+.badge-red { background: var(--red-dim); color: var(--red); }
+
+/* ── Forms ──────────────────────────────────────── */
+
+.form-group { margin-bottom: 1rem; }
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  margin-bottom: 0.4rem;
+}
+textarea, input[type="text"] {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 0.88rem;
+  padding: 0.75rem;
+  resize: vertical;
+  direction: ltr;
+  text-align: left;
+}
+textarea:focus, input[type="text"]:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(56,189,248,0.15);
+}
+input.rtl-input {
+  direction: rtl;
+  text-align: right;
+  font-family: var(--sans);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-primary { background: var(--accent); color: #000; font-weight: 600; }
+.btn-primary:hover { background: #7dd3fc; }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-secondary { background: var(--surface-alt); color: var(--text); border: 1px solid var(--border); }
+.btn-secondary:hover { background: var(--border); }
+.btn-danger { background: var(--red-dim); color: var(--red); }
+.btn-danger:hover { background: #991b1b; }
+.btn-sm { padding: 0.35rem 0.75rem; font-size: 0.82rem; }
+
+.btn-group { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+.error-msg {
+  background: var(--red-dim);
+  color: var(--red);
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  margin-top: 0.5rem;
+  display: none;
+}
+
+.hint {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  margin-top: 0.3rem;
+}
+
+/* ── Results ────────────────────────────────────── */
+
+.result-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+.result-card .field-name {
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.3rem 0;
+  font-size: 0.9rem;
+}
+.result-row .label { color: var(--text-dim); }
+
+.scores-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+.score-item {
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 0.5rem;
+  text-align: center;
+}
+.score-item .score-label { font-size: 0.75rem; color: var(--text-dim); }
+.score-item .score-value { font-size: 1.3rem; font-weight: 700; }
+
+.toggle-bar {
+  display: flex;
+  gap: 0;
+  margin-bottom: 1rem;
+  background: var(--surface);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  width: fit-content;
+}
+.toggle-btn {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  padding: 0.5rem 1.2rem;
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+.toggle-btn.active { background: var(--accent-dim); color: var(--accent); }
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-dim);
+  font-size: 1rem;
+}
+
+/* ── Glossary table ─────────────────────────────── */
+
+.glossary-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.glossary-table th {
+  text-align: right;
+  padding: 0.6rem;
+  border-bottom: 2px solid var(--border);
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.glossary-table td {
+  padding: 0.6rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.92rem;
+  vertical-align: middle;
+}
+.glossary-table tr:hover td { background: var(--surface-alt); }
+.glossary-actions { display: flex; gap: 0.4rem; }
+
+/* ── Language grid ─────────────────────────────── */
+.lang-grid-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+.lang-grid-label .hint { font-weight: 400; }
+
+.lang-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.lang-input-group {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.lang-input-group:focus-within {
+  border-color: var(--accent);
+}
+.lang-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  min-width: 42px;
+  height: 100%;
+  background: var(--surface-alt);
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-left: 1px solid var(--border);
+  padding: 0.55rem 0;
+}
+.lang-input-group input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  padding: 0.55rem 0.75rem;
+  outline: none;
+}
+.lang-input-group input::placeholder { color: var(--text-dim); opacity: 0.5; }
+
+/* ── Modal ──────────────────────────────────────── */
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  width: 90%;
+  max-width: 500px;
+}
+.modal h3 { margin-bottom: 1rem; color: var(--accent); }
+
+/* ── Spinner ────────────────────────────────────── */
+
+.spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Toast ──────────────────────────────────────── */
+
+.toast-container {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.toast {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  animation: fadeIn 0.3s;
+}
+.toast-success { background: var(--green-dim); color: var(--green); }
+.toast-error { background: var(--red-dim); color: var(--red); }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-content">
+    <div class="header-logo">
+      <img src="/static/KPMG_blue_logo.svg" alt="KPMG">
+    </div>
+    <div class="header-title">
+      <h1>Translation Service</h1>
+    </div>
+    <div class="header-logo">
+      <img src="/static/Logo_digital.svg" alt="Israel Innovation Authority">
+    </div>
+  </div>
+  <p>שירות תרגום אוטומטי לעברית באמצעות Google Gemini עם הערכת איכות LLM-as-Judge</p>
+</div>
+
+<!-- Tab Bar -->
+<div class="tab-bar">
+  <button class="tab-btn active" data-tab="about">אודות המערכת</button>
+  <button class="tab-btn" data-tab="translate">שליחת תרגום</button>
+  <button class="tab-btn" data-tab="results">תוצאות</button>
+  <button class="tab-btn" data-tab="glossary">מילון מונחים</button>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- TAB 1: About                                    -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="tab-content active" id="tab-about">
+  <div class="card">
+    <h3>מה המערכת עושה?</h3>
+    <p style="font-size:0.92rem; margin-bottom:0.5rem;">
+      המערכת מקבלת אובייקט JSON עם שדות טקסט, מזהה אוטומטית את שפת המקור,
+      מתרגמת לעברית באמצעות Google Gemini, ומבצעת הערכת איכות אוטומטית (LLM-as-Judge)
+      שמחזירה ציונים בסולם 1-10.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>שפות נתמכות</h3>
+    <ul class="info-list">
+      <li><span class="badge badge-blue">EN</span> אנגלית</li>
+      <li><span class="badge badge-blue">FR</span> צרפתית</li>
+      <li><span class="badge badge-blue">ES</span> ספרדית</li>
+      <li><span class="badge badge-blue">AR</span> ערבית</li>
+      <li><span class="badge badge-blue">RU</span> רוסית</li>
+      <li><span class="badge badge-green">HE</span> עברית — עובר ללא תרגום (passthrough)</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>מצבי תרגום</h3>
+    <ul class="info-list">
+      <li>
+        <span class="badge badge-green">default</span>
+        תרגום רגיל — שומר על משמעות, טון וסגנון
+      </li>
+      <li>
+        <span class="badge badge-yellow">exact</span>
+        תעתיק שמות — שמות פרטיים, מקומות, מותגים (New York → ניו יורק)
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>הערכת איכות (Scores)</h3>
+    <p style="font-size:0.88rem; margin-bottom:0.5rem;">כל תרגום מוערך אוטומטית ב-4 מימדים (1-10):</p>
+    <ul class="info-list">
+      <li><strong>faithfulness</strong> — נאמנות למקור: כמה התרגום שומר על המשמעות המדויקת</li>
+      <li><strong>fluency</strong> — טבעיות וזרימה של העברית</li>
+      <li><strong>glossary_compliance</strong> — עמידה במילון מונחים</li>
+      <li><strong>overall</strong> — ציון כולל משוקלל (נאמנות ~60%, שטף ~20%, מונחים ~20%)</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>דוגמת Payload</h3>
+    <pre class="code-block">{
+  "formID": "consular@example.gov.il",
+  "fields_to_translate": [
+    { "field_name": "subject_en", "translation_instructions": "default" },
+    { "field_name": "job_title_ar", "translation_instructions": "exact" }
+  ],
+  "data": {
+    "entry": {
+      "subject_en": {
+        "dataCode": "1",
+        "dataText": "Request for consular appointment"
+      }
+    },
+    "mahutHafnaya": {
+      "tblMahutHafnayaList": [{
+        "job_title_ar": {
+          "dataCode": "5",
+          "dataText": "مهندس برمجيات"
+        }
+      }]
+    }
+  }
+}</pre>
+    <p class="hint">
+      שדות שלא מופיעים ב-fields_to_translate עוברים כמו שהם בתשובה.
+      המערכת מחפשת שדות בעומק כולל מבנה dataCode/dataText.
+    </p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- TAB 2: Translate                                -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="tab-content" id="tab-translate">
+  <div class="card">
+    <h3>שליחת בקשת תרגום</h3>
+    <p class="hint" style="margin-bottom:1rem;">
+      הכנס JSON תקין עם מערך <code style="color:var(--accent)">fields_to_translate</code>
+      ושדות הטקסט לתרגום. ה-JSON חייב לכלול לפחות שדה אחד לתרגום.
+    </p>
+
+    <div class="form-group">
+      <label>JSON Payload</label>
+      <textarea id="jsonInput" rows="20" spellcheck="false">{
+  "formID": "consular@example.gov.il",
+  "fields_to_translate": [
+    { "field_name": "subject_en", "translation_instructions": "default" },
+    { "field_name": "reason_fr", "translation_instructions": "default" },
+    { "field_name": "job_title_ar", "translation_instructions": "exact" }
+  ],
+  "data": {
+    "entry": {
+      "subject_en": {
+        "dataCode": "1",
+        "dataText": "Request for consular appointment"
+      },
+      "reason_fr": {
+        "dataCode": "3",
+        "dataText": "Mon passeport a expiré et j'ai besoin de le renouveler."
+      }
+    },
+    "mahutHafnaya": {
+      "tblMahutHafnayaList": [{
+        "questId": "12345678",
+        "job_title_ar": {
+          "dataCode": "5",
+          "dataText": "مهندس برمجيات"
+        }
+      }]
+    }
+  }
+}</textarea>
+    </div>
+
+    <div class="btn-group" style="margin-bottom:0.75rem;">
+      <button class="btn btn-secondary btn-sm" onclick="loadExample()">דוגמה מלאה</button>
+      <button class="btn btn-secondary btn-sm" onclick="formatJson()">פורמט JSON</button>
+      <button class="btn btn-secondary btn-sm" onclick="clearJson()">נקה</button>
+    </div>
+
+    <div class="error-msg" id="jsonError"></div>
+
+    <div style="margin-top:1rem;">
+      <button class="btn btn-primary" id="sendBtn" onclick="sendTranslation()">
+        שלח לתרגום
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- TAB 3: Results                                  -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="tab-content" id="tab-results">
+  <div class="toggle-bar">
+    <button class="toggle-btn active" onclick="showView('pretty', this)">תצוגה מעוצבת</button>
+    <button class="toggle-btn" onclick="showView('raw', this)">Raw JSON</button>
+  </div>
+
+  <div id="prettyView">
+    <div class="empty-state" id="resultsEmpty">שלח תרגום כדי לראות תוצאות</div>
+    <div id="resultsCards"></div>
+  </div>
+  <div id="rawView" style="display:none;">
+    <pre class="code-block" id="rawJson" style="max-height:600px; overflow:auto;">שלח תרגום כדי לראות תוצאות</pre>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- TAB 4: Glossary                                 -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="tab-content" id="tab-glossary">
+  <!-- Password Gate -->
+  <div id="glossaryGate" class="card" style="max-width:400px; margin:3rem auto; text-align:center;">
+    <h3 style="margin-bottom:0.5rem;">גישה מוגנת</h3>
+    <p class="hint" style="margin-bottom:1rem;">הזן סיסמת מנהל כדי לגשת למילון המונחים</p>
+    <div class="form-group" style="margin-bottom:0.75rem;">
+      <input type="password" id="glossaryPassword" class="rtl-input" placeholder="סיסמה" style="text-align:center; direction:ltr;"
+             onkeydown="if(event.key==='Enter') checkGlossaryPassword()">
+    </div>
+    <div class="error-msg" id="glossaryPwError">סיסמה שגויה</div>
+    <button class="btn btn-primary" onclick="checkGlossaryPassword()">כניסה</button>
+  </div>
+
+  <!-- Glossary Content (hidden until authenticated) -->
+  <div id="glossaryContent" style="display:none;">
+  <div class="card">
+    <h3>הוספת מונח חדש</h3>
+    <p class="hint" style="margin-bottom:1rem;">
+      הוסף מונחים שהמודל צריך להכיר — שמות מוצרים, מונחים מקצועיים,
+      או כל מילה שחשוב שהתרגום יהיה ספציפי עבורה. ניתן להזין את המונח במספר שפות
+      כדי שהמודל יזהה אותו בכל שפת מקור.
+    </p>
+
+    <div class="form-group">
+      <label>תרגום / ערך בעברית</label>
+      <input type="text" id="glossaryHebrew" class="rtl-input" placeholder='לדוגמה: "שער ממשק תכנות"'>
+    </div>
+
+    <label class="lang-grid-label">המונח בשפות שונות <span class="hint">(מלא לפחות שפה אחת)</span></label>
+    <div class="lang-grid">
+      <div class="lang-input-group">
+        <span class="lang-badge">EN</span>
+        <input type="text" id="termEn" placeholder="English term">
+      </div>
+      <div class="lang-input-group">
+        <span class="lang-badge">RU</span>
+        <input type="text" id="termRu" placeholder="Термин на русском">
+      </div>
+      <div class="lang-input-group">
+        <span class="lang-badge">AR</span>
+        <input type="text" id="termAr" class="rtl-input" placeholder="المصطلح بالعربية">
+      </div>
+      <div class="lang-input-group">
+        <span class="lang-badge">FR</span>
+        <input type="text" id="termFr" placeholder="Terme en français">
+      </div>
+      <div class="lang-input-group">
+        <span class="lang-badge">ES</span>
+        <input type="text" id="termEs" placeholder="Término en español">
+      </div>
+    </div>
+
+    <div class="form-group" style="margin-top:0.75rem;">
+      <label>הסבר (אופציונלי)</label>
+      <input type="text" id="glossaryExplanation" class="rtl-input" placeholder='לדוגמה: "נקודת כניסה מרכזית לשירותי API"'>
+    </div>
+
+    <div class="form-group" style="margin-top:0.75rem;">
+      <label>סוג (kind)</label>
+      <div style="display:flex; gap:0.5rem; align-items:center;">
+        <select id="glossaryKind" style="flex:1; padding:0.5rem; border:1px solid var(--border); border-radius:6px; background:var(--card); color:var(--text);">
+          <option value="general">general</option>
+        </select>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="showCustomKindInput('add')" style="white-space:nowrap;">אחר…</button>
+      </div>
+      <input type="text" id="glossaryKindCustom" placeholder="הזן סוג חדש" style="display:none; margin-top:0.5rem;">
+    </div>
+
+    <button class="btn btn-primary" onclick="addGlossaryEntry()">הוסף מונח</button>
+  </div>
+
+  <div class="card">
+    <h3>מונחים במילון</h3>
+    <div id="glossaryEmpty" class="empty-state" style="padding:1.5rem;">
+      המילון ריק — הוסף מונחים כדי לשפר את התרגום
+    </div>
+    <table class="glossary-table" id="glossaryTable" style="display:none;">
+      <thead>
+        <tr>
+          <th>מושג</th>
+          <th>עברית</th>
+          <th>הסבר</th>
+          <th>סוג</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="glossaryBody"></tbody>
+    </table>
+  </div>
+  </div> <!-- /glossaryContent -->
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- Edit Modal                                      -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="modal-overlay" id="editModal">
+  <div class="modal">
+    <h3>עריכת מונח</h3>
+    <input type="hidden" id="editId">
+    <div class="form-group">
+      <label>עברית</label>
+      <input type="text" id="editHebrew" class="rtl-input">
+    </div>
+    <label class="lang-grid-label">המונח בשפות</label>
+    <div class="lang-grid" style="margin-bottom:0.75rem;">
+      <div class="lang-input-group">
+        <span class="lang-badge">EN</span>
+        <input type="text" id="editTermEn">
+      </div>
+      <div class="lang-input-group">
+        <span class="lang-badge">RU</span>
+        <input type="text" id="editTermRu">
+      </div>
+      <div class="lang-input-group">
+        <span class="lang-badge">AR</span>
+        <input type="text" id="editTermAr" class="rtl-input">
+      </div>
+      <div class="lang-input-group">
+        <span class="lang-badge">FR</span>
+        <input type="text" id="editTermFr">
+      </div>
+      <div class="lang-input-group">
+        <span class="lang-badge">ES</span>
+        <input type="text" id="editTermEs">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>הסבר</label>
+      <input type="text" id="editExplanation" class="rtl-input">
+    </div>
+    <div class="form-group">
+      <label>סוג (kind)</label>
+      <div style="display:flex; gap:0.5rem; align-items:center;">
+        <select id="editKind" style="flex:1; padding:0.5rem; border:1px solid var(--border); border-radius:6px; background:var(--card); color:var(--text);">
+          <option value="general">general</option>
+        </select>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="showCustomKindInput('edit')" style="white-space:nowrap;">אחר…</button>
+      </div>
+      <input type="text" id="editKindCustom" placeholder="הזן סוג חדש" style="display:none; margin-top:0.5rem;">
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="saveEdit()">שמור</button>
+      <button class="btn btn-secondary" onclick="closeModal()">ביטול</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── Tabs ───────────────────────────────────────── */
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+/* ── Toast ──────────────────────────────────────── */
+
+function toast(message, type = 'success') {
+  const container = document.getElementById('toastContainer');
+  const el = document.createElement('div');
+  el.className = 'toast toast-' + type;
+  el.textContent = message;
+  container.appendChild(el);
+  setTimeout(() => el.remove(), 3000);
+}
+
+/* ── JSON Helpers ───────────────────────────────── */
+
+function loadExample() {
+  document.getElementById('jsonInput').value = JSON.stringify({
+    formID: "consular@example.gov.il",
+    fields_to_translate: [
+      { field_name: "subject_en", translation_instructions: "default" },
+      { field_name: "previouslySent", translation_instructions: "exact" },
+      { field_name: "reason_fr", translation_instructions: "default" },
+      { field_name: "job_title_ar", translation_instructions: "exact" },
+      { field_name: "notes_es", translation_instructions: "default" },
+      { field_name: "remarks_he", translation_instructions: "default" },
+      { field_name: "nonexistent_field", translation_instructions: "default" }
+    ],
+    data: {
+      entry: {
+        subject_en: { dataCode: "1", dataText: "Request for consular appointment" },
+        previouslySent: { dataCode: "2", dataText: "\u043D\u0435\u0442" },
+        reason_fr: { dataCode: "3", dataText: "Mon passeport a expir\u00E9 et j'ai besoin de le renouveler avant mon voyage." },
+        remarks_he: { dataCode: "4", dataText: "\u05E7\u05D9\u05D1\u05DC\u05EA\u05D9 \u05D4\u05D5\u05D3\u05E2\u05D4 \u05E2\u05DC \u05D3\u05D7\u05D9\u05D9\u05EA \u05D4\u05D1\u05E7\u05E9\u05D4 \u05D5\u05D0\u05E0\u05D9 \u05DE\u05D2\u05D9\u05E9 \u05E2\u05E8\u05E8." }
+      },
+      mahutHafnaya: {
+        tblMahutHafnayaList: [{
+          questId: "12345678",
+          lname: "\u0645\u062D\u0645\u062F",
+          fname: "\u0623\u062D\u0645\u062F",
+          job_title_ar: { dataCode: "5", dataText: "\u0645\u0647\u0646\u062F\u0633 \u0628\u0631\u0645\u062C\u064A\u0627\u062A" },
+          notes_es: "Soy madre soltera con dos hijos. Solicito la reducci\u00F3n m\u00E1xima permitida por ley.",
+          email: "test@mail.com",
+          phoneNumber: "+972501234567"
+        }]
+      }
+    }
+  }, null, 2);
+  hideError();
+}
+
+function formatJson() {
+  const input = document.getElementById('jsonInput');
+  try {
+    const parsed = JSON.parse(input.value);
+    input.value = JSON.stringify(parsed, null, 2);
+    hideError();
+  } catch (e) {
+    showError('JSON לא תקין: ' + e.message);
+  }
+}
+
+function clearJson() {
+  document.getElementById('jsonInput').value = '';
+  hideError();
+}
+
+function showError(msg) {
+  const el = document.getElementById('jsonError');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+function hideError() {
+  document.getElementById('jsonError').style.display = 'none';
+}
+
+/* ── Send Translation ───────────────────────────── */
+
+let lastResponse = null;
+let lastRequest = null;
+
+async function sendTranslation() {
+  hideError();
+  const input = document.getElementById('jsonInput').value.trim();
+  let payload;
+
+  try {
+    payload = JSON.parse(input);
+  } catch (e) {
+    showError('JSON לא תקין: ' + e.message);
+    return;
+  }
+
+  if (!payload.fields_to_translate || !Array.isArray(payload.fields_to_translate) || payload.fields_to_translate.length === 0) {
+    showError('חסר מערך fields_to_translate עם לפחות שדה אחד');
+    return;
+  }
+
+  const btn = document.getElementById('sendBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> מתרגם...';
+
+  lastRequest = payload;
+
+  try {
+    const res = await fetch('/api/translate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+
+    if (!res.ok) {
+      const errData = await res.json().catch(() => ({}));
+      throw new Error(errData.detail || `HTTP ${res.status}`);
+    }
+
+    lastResponse = await res.json();
+    renderResults();
+    toast('התרגום הושלם בהצלחה');
+
+    // Switch to results tab
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelector('[data-tab="results"]').classList.add('active');
+    document.getElementById('tab-results').classList.add('active');
+
+  } catch (e) {
+    showError('שגיאה: ' + e.message);
+    toast(e.message, 'error');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = 'שלח לתרגום';
+  }
+}
+
+/* ── Render Results ─────────────────────────────── */
+
+function scoreColor(val) {
+  if (val >= 8) return 'var(--green)';
+  if (val >= 5) return 'var(--yellow)';
+  return 'var(--red)';
+}
+
+function statusBadge(status) {
+  const map = {
+    success: { cls: 'badge-green', label: 'success' },
+    failed:  { cls: 'badge-red',   label: 'failed' },
+    skipped: { cls: 'badge-yellow', label: 'skipped' },
+  };
+  const s = map[status] || { cls: 'badge-blue', label: status || '—' };
+  return `<span class="badge ${s.cls}">${s.label}</span>`;
+}
+
+function renderResults() {
+  if (!lastResponse) return;
+
+  const cardsDiv = document.getElementById('resultsCards');
+  const emptyDiv = document.getElementById('resultsEmpty');
+  const rawPre = document.getElementById('rawJson');
+
+  // Raw view
+  rawPre.textContent = JSON.stringify(lastResponse, null, 2);
+
+  // Pretty view
+  const meta = lastResponse.translation_metadata;
+  if (!meta || !meta.fields_translated || meta.fields_translated.length === 0) {
+    emptyDiv.style.display = 'block';
+    cardsDiv.innerHTML = '';
+    return;
+  }
+
+  emptyDiv.style.display = 'none';
+  cardsDiv.innerHTML = '';
+
+  for (const field of meta.fields_translated) {
+    const card = document.createElement('div');
+    card.className = 'result-card';
+
+    const originalValue = field.raw_content || '—';
+    const translatedValue = field.translation || '—';
+    const status = field.translation_status || '';
+    const errorMsg = field.error || '';
+    const isPassthrough = field.language_detected === 'he' && status === 'skipped';
+    const isMissing = !field.language_detected && status === 'skipped';
+    const isFailed = status === 'failed';
+
+    let scoresHtml = '';
+    if (field.scores) {
+      const dims = ['faithfulness', 'fluency', 'glossary_compliance', 'overall'];
+      const labels = {
+        faithfulness: 'נאמנות', fluency: 'שטף',
+        glossary_compliance: 'מונחים', overall: 'כולל'
+      };
+      scoresHtml = '<div class="scores-grid">';
+      for (const d of dims) {
+        const v = field.scores[d];
+        scoresHtml += `
+          <div class="score-item">
+            <div class="score-label">${labels[d]}</div>
+            <div class="score-value" style="color:${scoreColor(v)}">${v}</div>
+          </div>`;
+      }
+      scoresHtml += '</div>';
+    }
+
+    // Error banner
+    let errorHtml = '';
+    if (errorMsg) {
+      errorHtml = `<div style="margin-top:0.5rem; padding:0.5rem 0.75rem; background:var(--red-dim); color:var(--red); border-radius:8px; font-size:0.85rem;">${escapeHtml(errorMsg)}</div>`;
+    }
+
+    // Language row — only show if detected
+    let langRow = '';
+    if (field.language_detected) {
+      langRow = `
+      <div class="result-row">
+        <span class="label">שפה שזוהתה:</span>
+        <span class="badge badge-blue">${field.language_detected.toUpperCase()}</span>
+      </div>`;
+    }
+
+    // Content block
+    let contentHtml = '';
+    if (isMissing) {
+      contentHtml = '<div style="margin-top:0.5rem; color:var(--text-dim); font-size:0.88rem;">השדה לא נמצא בנתונים</div>';
+    } else if (isPassthrough) {
+      contentHtml = '<div style="margin-top:0.5rem; color:var(--text-dim); font-size:0.88rem;">עברית — עבר ללא תרגום</div>';
+    } else if (originalValue !== '—') {
+      contentHtml = `
+        <div style="margin-top:0.75rem; padding:0.75rem; background:var(--bg); border-radius:8px;">
+          <div style="font-size:0.82rem; color:var(--text-dim); margin-bottom:0.25rem;">מקור:</div>
+          <div style="font-size:0.92rem; direction:ltr; text-align:left;">${escapeHtml(String(originalValue))}</div>
+          <div style="font-size:0.82rem; color:var(--text-dim); margin:0.5rem 0 0.25rem;">תרגום:</div>
+          <div style="font-size:0.92rem;">${escapeHtml(String(translatedValue))}</div>
+        </div>`;
+    }
+
+    card.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+        <div class="field-name" style="margin-bottom:0;">${escapeHtml(field.field_name)}</div>
+        ${statusBadge(status)}
+      </div>
+      ${langRow}
+      <div class="result-row">
+        <span class="label">סוג:</span>
+        <span class="badge ${field.instruction === 'exact' ? 'badge-yellow' : 'badge-green'}">${field.instruction}</span>
+      </div>
+      ${contentHtml}
+      ${errorHtml}
+      ${scoresHtml}
+    `;
+    cardsDiv.appendChild(card);
+  }
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function showView(view, btn) {
+  document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('prettyView').style.display = view === 'pretty' ? 'block' : 'none';
+  document.getElementById('rawView').style.display = view === 'raw' ? 'block' : 'none';
+}
+
+/* ── Glossary Auth ─────────────────────────────── */
+
+let glossaryAuthenticated = false;
+
+async function checkGlossaryPassword() {
+  const input = document.getElementById('glossaryPassword');
+  const error = document.getElementById('glossaryPwError');
+  try {
+    const res = await fetch('/api/glossary/auth', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({password: input.value}),
+    });
+    if (res.ok) {
+      glossaryAuthenticated = true;
+      document.getElementById('glossaryGate').style.display = 'none';
+      document.getElementById('glossaryContent').style.display = 'block';
+      error.style.display = 'none';
+    } else {
+      error.style.display = 'block';
+      input.value = '';
+      input.focus();
+    }
+  } catch (e) {
+    error.style.display = 'block';
+    input.value = '';
+    input.focus();
+  }
+}
+
+/* ── Glossary ───────────────────────────────────── */
+
+async function loadKinds() {
+  try {
+    const res = await fetch('/api/glossary/kinds');
+    const data = await res.json();
+    populateKindSelect('glossaryKind', data.kinds, 'general');
+    populateKindSelect('editKind', data.kinds, 'general');
+  } catch (e) {
+    console.error('Failed to load kinds', e);
+  }
+}
+
+function populateKindSelect(selectId, kinds, selectedValue) {
+  const sel = document.getElementById(selectId);
+  sel.innerHTML = '';
+  for (const k of kinds) {
+    const opt = document.createElement('option');
+    opt.value = k;
+    opt.textContent = k;
+    if (k === selectedValue) opt.selected = true;
+    sel.appendChild(opt);
+  }
+}
+
+function showCustomKindInput(mode) {
+  const customInput = document.getElementById(mode === 'edit' ? 'editKindCustom' : 'glossaryKindCustom');
+  const select = document.getElementById(mode === 'edit' ? 'editKind' : 'glossaryKind');
+  if (customInput.style.display === 'none') {
+    customInput.style.display = 'block';
+    customInput.focus();
+    select.disabled = true;
+  } else {
+    customInput.style.display = 'none';
+    customInput.value = '';
+    select.disabled = false;
+  }
+}
+
+function getSelectedKind(mode) {
+  const customInput = document.getElementById(mode === 'edit' ? 'editKindCustom' : 'glossaryKindCustom');
+  const select = document.getElementById(mode === 'edit' ? 'editKind' : 'glossaryKind');
+  const custom = customInput.value.trim();
+  return custom || select.value || 'general';
+}
+
+async function loadGlossary() {
+  try {
+    const res = await fetch('/api/glossary');
+    const data = await res.json();
+    renderGlossary(data.entries);
+    loadKinds();
+  } catch (e) {
+    console.error('Failed to load glossary', e);
+  }
+}
+
+/* ── Lang-tagged term helpers ─────────────────── */
+
+const LANGS = ['en', 'ru', 'ar', 'fr', 'es'];
+const ADD_IDS  = { en: 'termEn', ru: 'termRu', ar: 'termAr', fr: 'termFr', es: 'termEs' };
+const EDIT_IDS = { en: 'editTermEn', ru: 'editTermRu', ar: 'editTermAr', fr: 'editTermFr', es: 'editTermEs' };
+
+// "en:Hello | ru:Привет | ar:مرحبا" → { en: "Hello", ru: "Привет", ar: "مرحبا" }
+function parseTerm(term) {
+  const map = {};
+  if (!term) return map;
+  term.split(/\s*\|\s*/).forEach(seg => {
+    const m = seg.match(/^([a-z]{2}):(.+)$/);
+    if (m) {
+      map[m[1]] = m[2].trim();
+    }
+  });
+  return map;
+}
+
+// { en: "Hello", ru: "Привет" } → "en:Hello | ru:Привет"
+function buildTerm(idMap) {
+  return LANGS
+    .map(lang => {
+      const val = document.getElementById(idMap[lang]).value.trim();
+      return val ? `${lang}:${val}` : '';
+    })
+    .filter(Boolean)
+    .join(' | ');
+}
+
+function clearLangInputs(idMap) {
+  LANGS.forEach(lang => document.getElementById(idMap[lang]).value = '');
+}
+
+// Pretty-print a lang-tagged term for the table (strip prefixes)
+function termDisplay(term) {
+  const map = parseTerm(term);
+  const parts = LANGS.filter(l => map[l]).map(l => `<code style="color:var(--accent);font-size:0.75rem;">${l}</code> ${escapeHtml(map[l])}`);
+  return parts.length ? parts.join(' <span style="color:var(--text-dim);opacity:0.4;">|</span> ') : escapeHtml(term);
+}
+
+// Store glossary entries for edit lookup (avoids inline JS escaping issues)
+let _glossaryEntries = [];
+
+function renderGlossary(entries) {
+  _glossaryEntries = entries || [];
+  const table = document.getElementById('glossaryTable');
+  const empty = document.getElementById('glossaryEmpty');
+  const tbody = document.getElementById('glossaryBody');
+
+  if (!entries || entries.length === 0) {
+    table.style.display = 'none';
+    empty.style.display = 'block';
+    return;
+  }
+
+  empty.style.display = 'none';
+  table.style.display = 'table';
+  tbody.innerHTML = '';
+
+  for (const e of entries) {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td style="direction:ltr; text-align:left;">${termDisplay(e.term)}</td>
+      <td>${escapeHtml(e.hebrew)}</td>
+      <td style="color:var(--text-dim);">${escapeHtml(e.explanation || '—')}</td>
+      <td><code style="font-size:0.8rem;">${escapeHtml(e.kind || 'general')}</code></td>
+      <td>
+        <div class="glossary-actions">
+          <button class="btn btn-secondary btn-sm" data-edit-id="${e.id}">ערוך</button>
+          <button class="btn btn-danger btn-sm" data-delete-id="${e.id}">מחק</button>
+        </div>
+      </td>
+    `;
+    // Bind edit/delete via event listeners (no inline onclick escaping issues)
+    tr.querySelector('[data-edit-id]').addEventListener('click', () => openEdit(e.id));
+    tr.querySelector('[data-delete-id]').addEventListener('click', () => deleteEntry(e.id));
+    tbody.appendChild(tr);
+  }
+}
+
+async function addGlossaryEntry() {
+  const term = buildTerm(ADD_IDS);
+  const hebrew = document.getElementById('glossaryHebrew').value.trim();
+  const explanation = document.getElementById('glossaryExplanation').value.trim();
+  const kind = getSelectedKind('add');
+
+  if (!term || !hebrew) {
+    toast('יש למלא לפחות שפה אחת ותרגום לעברית', 'error');
+    return;
+  }
+
+  try {
+    const res = await fetch('/api/glossary', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ term, hebrew, explanation, kind }),
+    });
+    if (!res.ok) throw new Error('Failed to add');
+    clearLangInputs(ADD_IDS);
+    document.getElementById('glossaryHebrew').value = '';
+    document.getElementById('glossaryExplanation').value = '';
+    document.getElementById('glossaryKindCustom').value = '';
+    document.getElementById('glossaryKindCustom').style.display = 'none';
+    document.getElementById('glossaryKind').disabled = false;
+    toast('המונח נוסף בהצלחה');
+    loadGlossary();
+  } catch (e) {
+    toast('שגיאה בהוספת מונח', 'error');
+  }
+}
+
+function openEdit(id) {
+  const entry = _glossaryEntries.find(e => e.id === id);
+  if (!entry) return;
+
+  document.getElementById('editId').value = entry.id;
+  document.getElementById('editHebrew').value = entry.hebrew;
+  document.getElementById('editExplanation').value = entry.explanation || '';
+
+  // Set kind dropdown
+  const editKindSel = document.getElementById('editKind');
+  const entryKind = entry.kind || 'general';
+  // Ensure the entry's kind is in the dropdown options
+  if (![...editKindSel.options].some(o => o.value === entryKind)) {
+    const opt = document.createElement('option');
+    opt.value = entryKind;
+    opt.textContent = entryKind;
+    editKindSel.appendChild(opt);
+  }
+  editKindSel.value = entryKind;
+  editKindSel.disabled = false;
+  document.getElementById('editKindCustom').value = '';
+  document.getElementById('editKindCustom').style.display = 'none';
+
+  // Parse lang-tagged term into the correct input fields
+  const map = parseTerm(entry.term);
+  clearLangInputs(EDIT_IDS);
+  LANGS.forEach(lang => {
+    if (map[lang]) document.getElementById(EDIT_IDS[lang]).value = map[lang];
+  });
+
+  document.getElementById('editModal').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('editModal').classList.remove('open');
+}
+
+async function saveEdit() {
+  const id = document.getElementById('editId').value;
+  const term = buildTerm(EDIT_IDS);
+  const hebrew = document.getElementById('editHebrew').value.trim();
+  const explanation = document.getElementById('editExplanation').value.trim();
+  const kind = getSelectedKind('edit');
+
+  if (!term || !hebrew) {
+    toast('יש למלא לפחות שפה אחת ותרגום', 'error');
+    return;
+  }
+
+  try {
+    const res = await fetch('/api/glossary/' + id, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ term, hebrew, explanation, kind }),
+    });
+    if (!res.ok) throw new Error('Failed to update');
+    closeModal();
+    toast('המונח עודכן');
+    loadGlossary();
+  } catch (e) {
+    toast('שגיאה בעדכון', 'error');
+  }
+}
+
+async function deleteEntry(id) {
+  if (!confirm('למחוק את המונח?')) return;
+  try {
+    const res = await fetch('/api/glossary/' + id, { method: 'DELETE' });
+    if (!res.ok) throw new Error('Failed to delete');
+    toast('המונח נמחק');
+    loadGlossary();
+  } catch (e) {
+    toast('שגיאה במחיקה', 'error');
+  }
+}
+
+// Load glossary and kinds on page load
+loadGlossary();
+loadKinds();
+</script>
+</body>
+</html>

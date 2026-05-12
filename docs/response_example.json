@@ -1,0 +1,110 @@
+{
+  "fields_to_translate": [
+    { "field_name": "subject_en", "translation_instructions": "default" },
+    { "field_name": "previouslySent", "translation_instructions": "exact" },
+    { "field_name": "reason_fr", "translation_instructions": "default" },
+    { "field_name": "job_title_ar", "translation_instructions": "exact" },
+    { "field_name": "notes_es", "translation_instructions": "default" },
+    { "field_name": "remarks_he", "translation_instructions": "default" },
+    { "field_name": "nonexistent_field", "translation_instructions": "default" }
+  ],
+  "translation_metadata": {
+    "fields_translated": [
+      {
+        "field_name": "subject_en",
+        "language_detected": "en",
+        "instruction": "default",
+        "translation": "בקשה לקביעת תור קונסולרי",
+        "raw_content": "Request for consular appointment",
+        "scores": {
+          "faithfulness": 9.5,
+          "fluency": 9.0,
+          "glossary_compliance": 10.0,
+          "overall": 9.5
+        },
+        "translation_status": "success",
+        "error": ""
+      },
+      {
+        "field_name": "previouslySent",
+        "language_detected": "ru",
+        "instruction": "exact",
+        "translation": "לא",
+        "raw_content": "нет",
+        "scores": {
+          "faithfulness": 10.0,
+          "fluency": 10.0,
+          "glossary_compliance": 10.0,
+          "overall": 10.0
+        },
+        "translation_status": "success",
+        "error": ""
+      },
+      {
+        "field_name": "reason_fr",
+        "language_detected": "fr",
+        "instruction": "default",
+        "translation": "הדרכון שלי פג תוקף ואני צריך לחדש אותו לפני הנסיעה שלי.",
+        "raw_content": "Mon passeport a expiré et j'ai besoin de le renouveler avant mon voyage.",
+        "scores": {
+          "faithfulness": 9.0,
+          "fluency": 9.5,
+          "glossary_compliance": 10.0,
+          "overall": 9.3
+        },
+        "translation_status": "success",
+        "error": ""
+      },
+      {
+        "field_name": "job_title_ar",
+        "language_detected": "ar",
+        "instruction": "exact",
+        "translation": "מהנדס תוכנה",
+        "raw_content": "مهندس برمجيات",
+        "scores": {
+          "faithfulness": 10.0,
+          "fluency": 10.0,
+          "glossary_compliance": 10.0,
+          "overall": 10.0
+        },
+        "translation_status": "success",
+        "error": ""
+      },
+      {
+        "field_name": "notes_es",
+        "language_detected": "es",
+        "instruction": "default",
+        "translation": "אני אם חד-הורית עם שני ילדים. אני מבקשת את ההנחה המרבית המותרת על פי חוק.",
+        "raw_content": "Soy madre soltera con dos hijos. Solicito la reducción máxima permitida por ley.",
+        "scores": {
+          "faithfulness": 9.0,
+          "fluency": 9.0,
+          "glossary_compliance": 10.0,
+          "overall": 9.2
+        },
+        "translation_status": "success",
+        "error": ""
+      },
+      {
+        "field_name": "remarks_he",
+        "language_detected": "he",
+        "instruction": "default",
+        "translation": "קיבלתי הודעה על דחיית הבקשה ואני מגיש ערר.",
+        "raw_content": "קיבלתי הודעה על דחיית הבקשה ואני מגיש ערר.",
+        "scores": null,
+        "translation_status": "skipped",
+        "error": ""
+      },
+      {
+        "field_name": "nonexistent_field",
+        "language_detected": "",
+        "instruction": "default",
+        "translation": "",
+        "raw_content": "",
+        "scores": null,
+        "translation_status": "skipped",
+        "error": "Field not found in data"
+      }
+    ]
+  }
+}

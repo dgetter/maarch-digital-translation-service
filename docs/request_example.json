@@ -1,0 +1,48 @@
+{
+  "formID": "consular@example.gov.il",
+  "fields_to_translate": [
+    { "field_name": "subject_en", "translation_instructions": "default" },
+    { "field_name": "previouslySent", "translation_instructions": "exact" },
+    { "field_name": "reason_fr", "translation_instructions": "default" },
+    { "field_name": "job_title_ar", "translation_instructions": "exact" },
+    { "field_name": "notes_es", "translation_instructions": "default" },
+    { "field_name": "remarks_he", "translation_instructions": "default" },
+    { "field_name": "nonexistent_field", "translation_instructions": "default" }
+  ],
+  "data": {
+    "entry": {
+      "subject_en": {
+        "dataCode": "1",
+        "dataText": "Request for consular appointment"
+      },
+      "previouslySent": {
+        "dataCode": "2",
+        "dataText": "нет"
+      },
+      "reason_fr": {
+        "dataCode": "3",
+        "dataText": "Mon passeport a expiré et j'ai besoin de le renouveler avant mon voyage."
+      },
+      "remarks_he": {
+        "dataCode": "4",
+        "dataText": "קיבלתי הודעה על דחיית הבקשה ואני מגיש ערר."
+      }
+    },
+    "mahutHafnaya": {
+      "tblMahutHafnayaList": [
+        {
+          "questId": "12345678",
+          "lname": "محمد",
+          "fname": "أحمد",
+          "job_title_ar": {
+            "dataCode": "5",
+            "dataText": "مهندس برمجيات"
+          },
+          "notes_es": "Soy madre soltera con dos hijos. Solicito la reducción máxima permitida por ley.",
+          "email": "test@mail.com",
+          "phoneNumber": "+972501234567"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,267 @@
+<mxfile host="65bd71144e">
+    <diagram id="translation-gcp-arch" name="Translation Service GCP Architecture">
+        <mxGraphModel dx="1557" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2600" pageHeight="1600" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="30" value="&lt;font style=&quot;font-size: 16px; color: #2E7D32;&quot;&gt;&lt;b&gt;Google Cloud Platform (Serverless)&lt;/b&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#43A047;strokeWidth=2;dashed=1;verticalAlign=top;arcSize=3;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="370" y="80" width="2190" height="1140" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="&lt;font style=&quot;font-size: 22px;&quot;&gt;&lt;b&gt;Translation Service — GCP-Only Production Architecture (v1.1)&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px; color: #666;&quot;&gt;FastAPI + Cloud Run (VPC) + Vertex AI (Gemini 2.5 Flash) — Async HTTPS — Production-Ready v1.1&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="870" y="15" width="860" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="70" value="" style="endArrow=classic;html=1;strokeColor=#2E7D32;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="31" target="32" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="71" value="&lt;font style=&quot;font-size: 9px; color: #888;&quot;&gt;deploy&lt;/font&gt;" style="endArrow=classic;html=1;strokeColor=#2E7D32;strokeWidth=1;dashed=1;dashPattern=4 4;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="37" target="32" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="105" value="" style="endArrow=classic;html=1;strokeColor=#8E24AA;strokeWidth=2;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="38" target="101" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="106" value="&lt;font style=&quot;font-size: 9px; color: #888;&quot;&gt;fetch secrets&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="105" vertex="1" connectable="0">
+                    <mxGeometry x="-0.2" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="107" value="" style="endArrow=classic;html=1;strokeColor=#FF5722;strokeWidth=2;dashed=1;exitX=0.215;exitY=0.605;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitPerimeter=0;" parent="1" source="100" target="102" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="108" value="&lt;font style=&quot;font-size: 9px; color: #888;&quot;&gt;logs + metrics&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="107" vertex="1" connectable="0">
+                    <mxGeometry x="-0.1" y="1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="94" style="edgeStyle=none;html=1;" parent="1" source="91" target="32" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="420" y="910"/>
+                            <mxPoint x="420" y="750"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="78" value="" style="endArrow=classic;html=1;strokeColor=#689F38;strokeWidth=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="47" target="48" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="79" value="" style="endArrow=classic;html=1;strokeColor=#689F38;strokeWidth=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="50" target="51" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="80" value="" style="endArrow=classic;html=1;strokeColor=#689F38;strokeWidth=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="54" target="55" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="&lt;font style=&quot;font-size: 16px; color: #1565C0;&quot;&gt;&lt;b&gt;On-Premises&lt;/b&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;strokeWidth=2;dashed=1;verticalAlign=top;arcSize=4;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="30" y="80" width="280" height="1100" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;Client Server&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 11px; color: #555;&quot;&gt;Application Backend&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#BBDEFB;strokeColor=#1976D2;strokeWidth=2;arcSize=12;shadow=1;" parent="1" vertex="1">
+                    <mxGeometry x="55" y="330" width="210" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;&lt;b&gt;Sends:&lt;/b&gt; POST /api/translate&lt;br&gt;&lt;b&gt;Payload:&lt;/b&gt; JSON with&lt;br&gt;fields_to_translate[]&lt;br&gt;&lt;br&gt;&lt;b&gt;Receives:&lt;/b&gt; Translated fields&lt;br&gt;+ quality scores&lt;br&gt;+ language metadata&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F9A825;strokeWidth=1;dashed=1;arcSize=4;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;" parent="1" vertex="1">
+                    <mxGeometry x="55" y="470" width="210" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="&lt;font style=&quot;font-size: 10px; color: #888;&quot;&gt;&lt;i&gt;v1.1: No UI&lt;br&gt;Glossary via Firestore&lt;br&gt;Batch translation pattern&lt;/i&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="660" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="&lt;font style=&quot;font-size: 14px; color: #1565C0;&quot;&gt;&lt;b&gt;project-translation&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px; color: #666;&quot;&gt;(Main Service Project)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;strokeWidth=2;dashed=1;verticalAlign=top;arcSize=4;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="395" y="120" width="555" height="1040" as="geometry"/>
+                </mxCell>
+                <mxCell id="100" value="&lt;font style=&quot;font-size: 12px; color: rgb(92, 46, 145);&quot;&gt;&lt;b&gt;VPC (us-central1) — 3 Subnets&lt;/b&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#7B68AB;strokeWidth=2;dashed=1;dashPattern=8 8;verticalAlign=top;arcSize=3;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="410" y="175" width="525" height="960" as="geometry"/>
+                </mxCell>
+                <mxCell id="subnet-proxy" value="&lt;font style=&quot;font-size: 9px; color: #E65100;&quot;&gt;&lt;b&gt;Proxy-Only Subnet&lt;/b&gt; (10.0.3.0/24)&lt;br&gt;&lt;i&gt;Internal ALB Envoy proxies (GCP-managed)&lt;/i&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#E65100;strokeWidth=1;dashed=1;dashPattern=4 4;verticalAlign=top;arcSize=3;align=left;spacingLeft=5;spacingTop=2;" parent="1" vertex="1">
+                    <mxGeometry x="418" y="198" width="510" height="122" as="geometry"/>
+                </mxCell>
+                <mxCell id="subnet-app" value="&lt;font style=&quot;font-size: 9px; color: #1565C0;&quot;&gt;&lt;b&gt;Application Subnet&lt;/b&gt; (10.0.1.0/24)&lt;br&gt;&lt;i&gt;General-purpose — Private Google Access enabled&lt;/i&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#1565C0;strokeWidth=1;dashed=1;dashPattern=4 4;verticalAlign=top;arcSize=3;align=left;spacingLeft=5;spacingTop=2;" parent="1" vertex="1">
+                    <mxGeometry x="418" y="325" width="510" height="505" as="geometry"/>
+                </mxCell>
+                <mxCell id="subnet-conn" value="&lt;font style=&quot;font-size: 9px; color: #6A1B9A;&quot;&gt;&lt;b&gt;Connector Subnet&lt;/b&gt; (10.0.2.0/28) — Serverless VPC Access Connector&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#6A1B9A;strokeWidth=1;dashed=1;dashPattern=4 4;verticalAlign=middle;arcSize=3;align=left;spacingLeft=5;" parent="1" vertex="1">
+                    <mxGeometry x="418" y="837" width="370" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="&lt;b style=&quot;font-size: 13px;&quot;&gt;Internal Application LB&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px; color: rgb(85, 85, 85);&quot;&gt;L7 HTTP(S) Load Balancer&lt;br&gt;(Red Environment LB ?)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C8E6C9;strokeColor=#2E7D32;strokeWidth=2;arcSize=10;shadow=1;" parent="1" vertex="1">
+                    <mxGeometry x="520" y="240" width="280" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="&lt;font style=&quot;font-size: 13px; color: #1B5E20;&quot;&gt;&lt;b&gt;Cloud Run (Docker Container)&lt;/b&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#A5D6A7;strokeColor=#388E3C;strokeWidth=2;verticalAlign=top;arcSize=6;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="435" y="364" width="420" height="450" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" value="&lt;b&gt;FastAPI + Uvicorn&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;/api/translate endpoint&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#81C784;strokeColor=#2E7D32;strokeWidth=1;arcSize=8;" parent="1" vertex="1">
+                    <mxGeometry x="465" y="390" width="360" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" value="&lt;b&gt;Language Detection&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Unicode script analysis + langdetect&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#81C784;strokeColor=#2E7D32;strokeWidth=1;arcSize=8;" parent="1" vertex="1">
+                    <mxGeometry x="465" y="465" width="360" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="&lt;b&gt;Batch Translation Engine&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Batch prompt construction + Gemini API calls&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#81C784;strokeColor=#2E7D32;strokeWidth=1;arcSize=8;" parent="1" vertex="1">
+                    <mxGeometry x="465" y="540" width="360" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="36" value="&lt;b&gt;LLM-as-Judge Batch Evaluator&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Quality scoring (faithfulness, fluency, glossary compliance)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#81C784;strokeColor=#2E7D32;strokeWidth=1;arcSize=8;" parent="1" vertex="1">
+                    <mxGeometry x="465" y="615" width="360" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="&lt;b&gt;Quota Router&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Round-robin / random across K projects&lt;br&gt;Selects GCP project per request (stateless)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#66BB6A;strokeColor=#1B5E20;strokeWidth=2;arcSize=8;shadow=1;" parent="1" vertex="1">
+                    <mxGeometry x="465" y="690" width="360" height="75" as="geometry"/>
+                </mxCell>
+                <mxCell id="104" value="&lt;font style=&quot;font-size: 9px; color: #888;&quot;&gt;VPC Firewall Rules: Ingress VPN only, Egress HTTPS only&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="500" y="805" width="310" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="102" value="&lt;b style=&quot;font-size: 12px;&quot;&gt;Cloud Operations Suite&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 9px; color: rgb(85, 85, 85);&quot;&gt;• Cloud Logging (JSON structured)&lt;br&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCCBC;strokeColor=#FF5722;strokeWidth=2;arcSize=10;shadow=1;" parent="1" vertex="1">
+                    <mxGeometry x="418" y="880" width="195" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="101" value="&lt;b style=&quot;font-size: 12px;&quot;&gt;Secret Manager&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px; color: #555;&quot;&gt;GCP Credentials (K projects)&lt;br&gt;Service Account JSONs&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1BEE7;strokeColor=#8E24AA;strokeWidth=2;arcSize=10;shadow=1;" parent="1" vertex="1">
+                    <mxGeometry x="750" y="885" width="165" height="85" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="&lt;b style=&quot;font-size: 12px;&quot;&gt;Artifact Registry&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px; color: #555;&quot;&gt;Docker Image Repository&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C8E6C9;strokeColor=#2E7D32;strokeWidth=2;arcSize=10;shadow=1;" parent="1" vertex="1">
+                    <mxGeometry x="420" y="990" width="155" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="91" value="&lt;b&gt;Cloud Firestore DB&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#555555&quot;&gt;&lt;span style=&quot;font-size: 10px;&quot;&gt;Glossary database (CMEK)&lt;/span&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C8E6C9;strokeColor=#2E7D32;strokeWidth=2;arcSize=10;shadow=1;" parent="1" vertex="1">
+                    <mxGeometry x="595" y="990" width="155" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="103" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;&lt;b&gt;Private Google Access&lt;/b&gt;&lt;br&gt;• Cloud Firestore&lt;br&gt;• Artifact Registry&lt;br&gt;• Secret Manager&lt;br&gt;• Cloud Logging&lt;br&gt;• Vertex AI APIs&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#9C27B0;strokeWidth=1;dashed=1;arcSize=4;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;" parent="1" vertex="1">
+                    <mxGeometry x="770" y="990" width="145" height="125" as="geometry"/>
+                </mxCell>
+                <mxCell id="45" value="&lt;font style=&quot;font-size: 14px; color: #33691E;&quot;&gt;&lt;b&gt;Vertex AI Quota Projects (K projects for quota distribution)&lt;/b&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#388E3C;strokeWidth=2;dashed=1;dashPattern=8 4;verticalAlign=top;arcSize=4;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="990" y="120" width="1540" height="520" as="geometry"/>
+                </mxCell>
+                <mxCell id="46" value="&lt;font style=&quot;font-size: 12px; color: #33691E;&quot;&gt;&lt;b&gt;project-llm-1&lt;/b&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCEDC8;strokeColor=#7CB342;strokeWidth=2;verticalAlign=top;arcSize=6;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="1030" y="180" width="340" height="320" as="geometry"/>
+                </mxCell>
+                <mxCell id="47" value="&lt;b&gt;Vertex AI&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Endpoint&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C5E1A5;strokeColor=#689F38;strokeWidth=1;arcSize=8;" parent="1" vertex="1">
+                    <mxGeometry x="1065" y="230" width="270" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="48" value="&lt;b style=&quot;font-size: 12px;&quot;&gt;Gemini 2.5 Flash&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 9px; color: #555;&quot;&gt;Quota: tokens/sec&lt;br&gt;Quota: tokens/min&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#AED581;strokeColor=#558B2F;strokeWidth=2;arcSize=8;shadow=1;" parent="1" vertex="1">
+                    <mxGeometry x="1065" y="305" width="270" height="95" as="geometry"/>
+                </mxCell>
+                <mxCell id="48b" value="&lt;font style=&quot;font-size: 9px; color: #689F38;&quot;&gt;&lt;i&gt;google-genai SDK&lt;br&gt;(direct call via PGA)&lt;/i&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="1065" y="420" width="140" height="45" as="geometry"/>
+                </mxCell>
+                <mxCell id="49" value="&lt;font style=&quot;font-size: 12px; color: #33691E;&quot;&gt;&lt;b&gt;project-llm-2&lt;/b&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCEDC8;strokeColor=#7CB342;strokeWidth=2;verticalAlign=top;arcSize=6;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="1420" y="180" width="340" height="320" as="geometry"/>
+                </mxCell>
+                <mxCell id="50" value="&lt;b&gt;Vertex AI&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Endpoint&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C5E1A5;strokeColor=#689F38;strokeWidth=1;arcSize=8;" parent="1" vertex="1">
+                    <mxGeometry x="1455" y="230" width="270" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="51" value="&lt;b style=&quot;font-size: 12px;&quot;&gt;Gemini 2.5 Flash&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 9px; color: #555;&quot;&gt;Quota: tokens/sec&lt;br&gt;Quota: tokens/min&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#AED581;strokeColor=#558B2F;strokeWidth=2;arcSize=8;shadow=1;" parent="1" vertex="1">
+                    <mxGeometry x="1455" y="305" width="270" height="95" as="geometry"/>
+                </mxCell>
+                <mxCell id="52" value="&lt;font style=&quot;font-size: 36px; color: #33691E;&quot;&gt;&lt;b&gt;. . .&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="1815" y="305" width="110" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="53" value="&lt;font style=&quot;font-size: 12px; color: #33691E;&quot;&gt;&lt;b&gt;project-llm-K&lt;/b&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCEDC8;strokeColor=#7CB342;strokeWidth=2;verticalAlign=top;arcSize=6;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="2060" y="180" width="340" height="320" as="geometry"/>
+                </mxCell>
+                <mxCell id="54" value="&lt;b&gt;Vertex AI&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;Endpoint&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C5E1A5;strokeColor=#689F38;strokeWidth=1;arcSize=8;" parent="1" vertex="1">
+                    <mxGeometry x="2095" y="230" width="270" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="55" value="&lt;b style=&quot;font-size: 12px;&quot;&gt;Gemini 2.5 Flash&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size: 9px; color: #555;&quot;&gt;Quota: tokens/sec&lt;br&gt;Quota: tokens/min&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#AED581;strokeColor=#558B2F;strokeWidth=2;arcSize=8;shadow=1;" parent="1" vertex="1">
+                    <mxGeometry x="2095" y="305" width="270" height="95" as="geometry"/>
+                </mxCell>
+                <mxCell id="56" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;&lt;b&gt;Scaling Strategy&lt;/b&gt;&lt;br&gt;&lt;br&gt;• Distribute load across K GCP projects&lt;br&gt;• Each project: independent quotas&lt;br&gt;• Rate limits per project:&lt;br&gt;   — tokens/sec limit&lt;br&gt;   — tokens/min limit&lt;br&gt;• Cloud Run Quota Router selects project&lt;br&gt;  per request (stateless round-robin)&lt;br&gt;• Direct SDK calls — no middleware&lt;br&gt;• All traffic stays within GCP backbone&lt;br&gt;&lt;br&gt;&lt;i&gt;Optional: multi-region routing&lt;br&gt;for higher throughput &amp;amp; resilience&lt;/i&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F1F8E9;strokeColor=#689F38;strokeWidth=1;dashed=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;" parent="1" vertex="1">
+                    <mxGeometry x="1030" y="690" width="410" height="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="57" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;&lt;b&gt;Why Multiple Projects?&lt;/b&gt;&lt;br&gt;&lt;br&gt;GCP API quotas (including Vertex AI)&lt;br&gt;are enforced &lt;b&gt;per project&lt;/b&gt;, not per org.&lt;br&gt;&lt;br&gt;Using K projects multiplies the&lt;br&gt;total available quota by K.&lt;br&gt;&lt;br&gt;The Cloud Run Quota Router distributes&lt;br&gt;requests evenly across all projects.&lt;br&gt;&lt;br&gt;&lt;b&gt;Single-Cloud Advantage:&lt;/b&gt;&lt;br&gt;No cross-cloud VPN needed.&lt;br&gt;All calls stay on GCP backbone.&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F1F8E9;strokeColor=#689F38;strokeWidth=1;dashed=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;" parent="1" vertex="1">
+                    <mxGeometry x="1490" y="690" width="410" height="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="58" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;&lt;b&gt;GCP Project Structure&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;project-translation&lt;/b&gt; (1 project):&lt;br&gt;• Cloud Run, Internal ALB, VPC&lt;br&gt;• Secret Manager, Cloud Firestore&lt;br&gt;• Artifact Registry&lt;br&gt;• Cloud Operations (Logging/Monitoring)&lt;br&gt;&lt;br&gt;&lt;b&gt;project-llm-1..K&lt;/b&gt; (K projects):&lt;br&gt;• Vertex AI + Gemini 2.5 Flash&lt;br&gt;• Independent quota per project&lt;br&gt;• Service accounts for each&lt;br&gt;&lt;br&gt;&lt;b&gt;Total:&lt;/b&gt; K+1 GCP projects&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F1F8E9;strokeColor=#689F38;strokeWidth=1;dashed=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;" parent="1" vertex="1">
+                    <mxGeometry x="1950" y="690" width="410" height="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="90" value="&lt;font style=&quot;font-size: 10px; color: #666;&quot;&gt;&lt;b&gt;Key Features:&lt;/b&gt;  Async HTTPS  •  Batch Translation &amp;amp; Evaluation  •  LLM-as-Judge Quality Scoring (faithfulness, fluency, glossary compliance)  •  Cloud Firestore Glossary (kind-specific, cached)  •  Multi-Project Quota Distribution  •  Language Detection (Unicode script + langdetect)  •  Serverless (Cloud Run)  •  Direct SDK Calls  •  GCP VPC + Private Google Access  •  Secret Manager  •  Cloud Operations (Logging + Monitoring + Alerting + Trace)  •  Firewall Rules  •  TLS 1.3 Encrypted  •  HA VPN (IPsec)  •  Single Cloud (GCP-Only)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#BDBDBD;strokeWidth=1;arcSize=4;align=center;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="29" y="1691" width="2530" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="200" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;LEGEND&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E0E0E0;strokeColor=#757575;strokeWidth=2;verticalAlign=top;arcSize=4;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="30" y="1230" width="550" height="450" as="geometry"/>
+                </mxCell>
+                <mxCell id="201" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;&lt;b&gt;Components:&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=top;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="45" y="1260" width="110" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="202" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;strokeWidth=2;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="1295" width="40" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="203" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;On-Premises Infrastructure&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="1290" width="170" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="204" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#43A047;strokeWidth=2;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="1330" width="40" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="205" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;Google Cloud Platform (unified)&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="1325" width="200" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="204b" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;strokeWidth=2;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="1365" width="40" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="205b" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;GCP Project (project-translation)&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="1360" width="210" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="206" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#7B68AB;strokeWidth=2;dashed=1;dashPattern=8 8;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="1400" width="40" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="207" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;VPC (3 Subnets: Proxy-Only / Application / Connector)&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="1395" width="310" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="208" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCEDC8;strokeColor=#7CB342;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="1435" width="40" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="209" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;Vertex AI Quota Project (project-llm-*)&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="1430" width="250" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="210" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;&lt;b&gt;Connections:&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=top;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="1260" width="110" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="212" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;Encrypted Connection (HA VPN / IPsec)&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="385" y="1290" width="230" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="214" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;Data Flow / API Call&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="385" y="1325" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="215" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;Cross-Project (Internal GCP backbone)&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="385" y="1360" width="230" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="216" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;Secrets / Configuration Access&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="385" y="1395" width="190" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="218" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;Logging / Metrics / Tracing&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="385" y="1430" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="220" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;ARCHITECTURE NOTES&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E0E0E0;strokeColor=#757575;strokeWidth=2;verticalAlign=top;arcSize=4;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="610" y="1228" width="1950" height="460" as="geometry"/>
+                </mxCell>
+                <mxCell id="221" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;&lt;b&gt;Networking:&lt;/b&gt;&lt;br&gt;• All components in one unified GCP cloud (K+1 projects).&lt;br&gt;• VPC with 3 subnets in us-central1:&lt;br&gt;   — Application Subnet (10.0.1.0/24): General-purpose, PGA enabled.&lt;br&gt;   — Connector Subnet (10.0.2.0/28): Dedicated /28 for VPC Access Connector.&lt;br&gt;   — Proxy-Only Subnet (10.0.3.0/24): Internal ALB Envoy proxies (GCP-managed).&lt;br&gt;• Private Google Access — all GCP APIs (including Vertex AI) accessed privately.&lt;br&gt;• Cloud Firestore for glossary (native mode, kind-specific queries, 300s cache).&lt;br&gt;• VPC Firewall Rules: Ingress from VPN source ranges only, egress HTTPS only.&lt;br&gt;• On-Prem to GCP: Cloud VPN (HA VPN) with IPsec tunnels (99.99% SLA).&lt;br&gt;• Cloud Run → Vertex AI: Cross-project calls on GCP internal backbone.&lt;br&gt;&lt;br&gt;&lt;b&gt;Security:&lt;/b&gt;&lt;br&gt;• GCP service account credentials stored in Secret Manager (no hardcoded secrets).&lt;br&gt;• Cloud Run service account with least-privilege IAM roles.&lt;br&gt;• Cloud KMS (CMEK) for Cloud Firestore encryption at rest.&lt;br&gt;• All traffic encrypted in transit (TLS 1.3).&lt;br&gt;• Optional: VPC Service Controls for data perimeter.&lt;br&gt;&lt;br&gt;&lt;b&gt;Observability:&lt;/b&gt;&lt;br&gt;• Cloud Logging: Structured JSON logs with correlation IDs for request tracing.&lt;br&gt;• Cloud Monitoring: Custom metrics — success rate, latency (p50, p95, p99), quota.&lt;br&gt;• Alerting Policies: Error rate thresholds, high latency, quota limits.&lt;br&gt;• Cloud Trace: Distributed tracing for end-to-end request latency analysis.&lt;br&gt;&lt;br&gt;&lt;b&gt;Scalability:&lt;/b&gt;&lt;br&gt;• Serverless: Cloud Run auto-scales (including to zero) based on request volume.&lt;br&gt;• K GCP projects multiply available Vertex AI quota by K.&lt;br&gt;• Quota Router: Stateless round-robin distributes load evenly across projects.&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=top;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;spacingLeft=10;" parent="1" vertex="1">
+                    <mxGeometry x="630" y="1260" width="600" height="340" as="geometry"/>
+                </mxCell>
+                <mxCell id="222" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;&lt;b&gt;Data Flow:&lt;/b&gt;&lt;br&gt;1. Client sends translation request to Internal ALB via encrypted HA VPN tunnel.&lt;br&gt;2. Internal ALB routes to Cloud Run service (internal ingress only).&lt;br&gt;3. Cloud Run fetches credentials from Secret Manager (via PGA).&lt;br&gt;4. Glossary loaded from Cloud Firestore (filtered by kind, cached 300s).&lt;br&gt;5. Quota Router selects project-llm-* using round-robin algorithm.&lt;br&gt;6. Language detection via Unicode script analysis + langdetect.&lt;br&gt;7. Batch Translation Engine calls Vertex AI (one call per instruction group).&lt;br&gt;8. LLM-as-Judge batch-scores translations (faithfulness, fluency,&lt;br&gt;   glossary compliance; weighted 60/20/20).&lt;br&gt;9. Cloud Run emits logs/metrics to Cloud Logging / Cloud Monitoring.&lt;br&gt;10. Response returned to client via Internal ALB → VPN.&lt;br&gt;&lt;br&gt;&lt;b&gt;Deployment:&lt;/b&gt;&lt;br&gt;• Cloud Run packaged as Docker container in Artifact Registry.&lt;br&gt;• Glossary in Cloud Firestore (CMEK encrypted, kind-specific).&lt;br&gt;• Infrastructure managed via Terraform.&lt;br&gt;&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=top;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;spacingLeft=10;" parent="1" vertex="1">
+                    <mxGeometry x="1430" y="1254" width="460" height="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="61" value="" style="rounded=1;html=1;strokeColor=#2E7D32;strokeWidth=2;dashed=1;dashPattern=8 8;endArrow=blockThin;endFill=1;startArrow=blockThin;startFill=1;exitX=0.995;exitY=0.942;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitPerimeter=0;edgeStyle=orthogonalEdgeStyle;" parent="1" source="32" target="49" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1000" y="788"/>
+                            <mxPoint x="1000" y="590"/>
+                            <mxPoint x="1590" y="590"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="63" value="" style="rounded=1;html=1;strokeColor=#2E7D32;strokeWidth=2;dashed=1;dashPattern=8 8;endArrow=blockThin;endFill=1;startArrow=blockThin;startFill=1;exitX=1.001;exitY=0.879;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitPerimeter=0;edgeStyle=orthogonalEdgeStyle;" parent="1" source="32" target="53" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="980" y="760"/>
+                            <mxPoint x="980" y="600"/>
+                            <mxPoint x="2230" y="600"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="60" value="&lt;font style=&quot;font-size: 11px; color: #00695C;&quot;&gt;&lt;b&gt;Cloud VPN (HA VPN)&lt;/b&gt;&lt;br&gt;Encrypted Tunnel (IPsec)&lt;br&gt;&lt;i&gt;Async HTTPS&lt;/i&gt;&lt;/font&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#00796B;strokeWidth=3;dashed=1;dashPattern=8 8;endArrow=blockThin;endFill=1;startArrow=blockThin;startFill=1;curved=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="21" target="31" edge="1">
+                    <mxGeometry x="0.085" y="33" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="62" value="&lt;font style=&quot;font-size: 11px; color: rgb(0, 105, 92);&quot;&gt;&lt;b&gt;Cross-Project (Internal GCP)&lt;/b&gt;&lt;br&gt;&lt;i&gt;google-genai SDK&lt;br&gt;via Private Google Access&lt;/i&gt;&lt;/font&gt;" style="rounded=1;html=1;strokeColor=#2E7D32;strokeWidth=3;dashed=1;dashPattern=8 8;endArrow=blockThin;endFill=1;startArrow=blockThin;startFill=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" parent="1" edge="1">
+                    <mxGeometry x="-0.3616" y="-10" relative="1" as="geometry">
+                        <mxPoint x="860" y="708" as="sourcePoint"/>
+                        <mxPoint x="1261" y="520" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="960" y="708"/>
+                            <mxPoint x="960" y="580"/>
+                            <mxPoint x="1261" y="580"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
