@@ -1,0 +1,90 @@
+# ── Secrets & credentials ─────────────────────────────────────────────────────
+# NEVER bake credentials into a Docker image.
+# On Cloud Run, auth is handled automatically via ADC / Workload Identity.
+.env
+.env.*
+!.env.example
+*.json
+# Re-include non-credential JSON if you ever add one:
+# !some_safe_config.json
+
+# ── Python artifacts ──────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+.eggs/
+dist/
+build/
+*.whl
+*.so
+
+# ── Virtual environment ───────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+# ── IDE & editor files ────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+*~
+.DS_Store
+Thumbs.db
+
+# ── Version control ───────────────────────────────────────────────────────────
+.git/
+.gitignore
+.gitattributes
+.gitmodules
+
+# ── Tests ─────────────────────────────────────────────────────────────────────
+tests/
+test_*.py
+*_test.py
+pytest.ini
+pyproject.toml
+setup.cfg
+.pytest_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# ── Documentation & project meta ─────────────────────────────────────────────
+*.md
+docs/
+CLAUDE.md
+LICENSE
+NOTICE
+
+# ── Logs & runtime artifacts ──────────────────────────────────────────────────
+*.log
+logs/
+costs_log.md
+*.tmp
+*.temp
+*.pid
+
+# ── CI / CD ───────────────────────────────────────────────────────────────────
+.github/
+.gitlab-ci.yml
+.circleci/
+cloudbuild.yaml
+*.cloudbuild.yaml
+Jenkinsfile
+
+# ── Docker meta (no need to copy into itself) ─────────────────────────────────
+Dockerfile
+Dockerfile.*
+.dockerignore
+
+# ── Local dev tooling ─────────────────────────────────────────────────────────
+Makefile
+docker-compose*.yml
