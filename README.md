@@ -252,12 +252,33 @@ Scores are `null` when `translation_status` is `skipped`.
 
 The glossary maps source terms to their required Hebrew translations. It is injected into every translation prompt to ensure consistent terminology. The glossary is stored in Firestore and cached in-memory for 5 minutes.
 
+### Term Format (Required)
+
+When adding or updating a glossary entry, the `term` field **must** follow this format:
+
+```
+xx:text | yy:text | zz:text
+```
+
+Where:
+- `xx`, `yy`, `zz` are 2-letter ISO 639-1 language codes (`en`, `ar`, `he`, `ru`, `fr`, `es`, etc.)
+- Each language code is followed by a colon (`:`)
+- Multiple variants are separated by ` | ` (space-pipe-space)
+- The system uses these language code prefixes to identify which language each variant is in
+
+**Examples:**
+- `en:Health fund | ar:صندوق المرضى | ru:Больничная касса`
+- `en:Referral | ar:إحالة | fr:Référence médicale`
+- `en:Job title | ar:منصب وظيفي`
+
+**Without language codes, the entry will be rejected with a validation error.** Always include the language code prefix.
+
 ### Glossary Entry Fields
 
 | Field | Type | Description |
 |-------|------|-------------|
 | `id` | string | Unique entry identifier (auto-generated UUID) |
-| `term` | string | Source term. Can contain multilingual variants separated by ` \| ` (e.g. `"Permanent resident \| Постоянный житель \| مقيم دائم"`) |
+| `term` | string | Source term with language code prefixes separated by ` \| `. Each variant must be prefixed with a 2-letter ISO 639-1 language code and colon (e.g. `"en:Permanent resident \| ru:Постоянный житель \| ar:مقيم دائم"`) |
 | `hebrew` | string | Required Hebrew translation |
 | `explanation` | string | Optional context or usage notes |
 | `kind` | string | Scope: `"general"` applies to all forms; any other value (e.g. `"consular"`) applies only when the translation request specifies that `kind` |
@@ -285,7 +306,7 @@ List all glossary entries. Optionally filter by kind.
   "entries": [
     {
       "id": "uuid-string",
-      "term": "Permanent resident | Постоянный житель",
+      "term": "en:Permanent resident | ru:Постоянный житель | ar:مقيم دائم",
       "hebrew": "תושב קבע",
       "explanation": "Legal residency status",
       "kind": "general"
@@ -302,7 +323,7 @@ Add a new glossary entry.
 **Request Body:**
 ```json
 {
-  "term": "software engineer | مهندس برمجيات",
+  "term": "en:software engineer | ar:مهندس برمجيات | fr:ingénieur logiciel | ru:инженер-программист",
   "hebrew": "מהנדס תוכנה",
   "explanation": "Job title",
   "kind": "general"
@@ -318,7 +339,7 @@ Update an existing entry. All fields are optional — only provided fields are u
 **Request Body (all optional):**
 ```json
 {
-  "term": "updated term",
+  "term": "en:updated term | ar:مصطلح محدث | fr:terme mis à jour",
   "hebrew": "עברית מעודכנת",
   "explanation": "updated explanation",
   "kind": "consular"
@@ -349,17 +370,17 @@ python scripts/import_glossary.py --skip-existing  # Skip entries already in Fir
 
 ### Multilingual Term Variants
 
-A single glossary entry can cover the same concept in multiple languages by separating variants with ` | `:
+A single glossary entry can cover the same concept in multiple languages. Each variant must include a 2-letter language code prefix followed by a colon:
 
 ```json
 {
-  "term": "Permanent resident | Постоянный житель | مقيم دائم | Résident permanent",
+  "term": "en:Permanent resident | ru:Постоянный житель | ar:مقيم دائم | fr:Résident permanent",
   "hebrew": "תושב קבע",
   "kind": "general"
 }
 ```
 
-The LLM will apply the Hebrew term whenever it encounters **any** of the listed variants in the source text, regardless of language.
+The LLM will apply the Hebrew term whenever it encounters **any** of the listed variants in the source text, regardless of language. The language code prefix (e.g., `en:`, `ru:`, `ar:`, `fr:`) tells the glossary which language each variant is in.
 
 ---
 
